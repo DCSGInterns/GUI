@@ -85,7 +85,6 @@ Item Detail:
 Item Description,
 Item Title,
 Item Family,
-Item Description,
 Order Group Promotions,
 Base,
 Catalog Number,
