@@ -7,8 +7,26 @@
 
 body
 {
+	background-color : 	#F2F6F6;
 	font-family: 'Roboto Condensed', sans-serif;
 	font-size: 18px;
+}
+
+#wrapper_1,#wrapper_2
+{
+	background-color : 	#F2F6F6;
+	
+}
+
+#toggle_1, #toggle_2
+{
+	width : 80%;
+	margin : 0px auto;
+	background-color : white;
+	padding : 10px 20px;
+	/*border-left : 3px solid #E8EEEE;
+	border-right : 3px solid #E8EEEE;*/
+	box-shadow : 5px 5px 7px #E8EEEE;
 }
 #margin_adjust
 {
