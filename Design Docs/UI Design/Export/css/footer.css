@@ -1,58 +1,9 @@
-@font-face {
-  font-family: 'Roboto Condensed';
-  font-style: normal;
-  font-weight: 400;
-  src : url(Roboto.woff);
-}
-
-body
+#footer
 {
-	background-color : 	#F2F6F6;
-	font-family: 'Roboto Condensed', sans-serif;
-	font-size: 18px;
+	height : 10%;
+	padding : 20px;
 }
-
-#wrapper_1,#wrapper_2
+#footer>a:hover
 {
-	background-color : 	#F2F6F6;
-	
-}
-
-#toggle_1, #toggle_2
-{
-	width : 80%;
-	margin : 0px auto;
-	background-color : white;
-	padding : 10px 20px;
-	/*border-left : 3px solid #E8EEEE;
-	border-right : 3px solid #E8EEEE;*/
-	box-shadow : 5px 5px 7px #E8EEEE;
-}
-#margin_adjust
-{
-	margin: 0px;
-}
-
-#panel_heading_1,#panel_heading_2
-{
-	background-color: #66FFFF;
-	font-size: 22px;
-}
-#panel_heading_2
-{
-	background-color:#33FF33;
-}
-
-#section_1,#section_2
-{
-	margin: 5px 0px;
-	padding: 5px 0px;
-	border-top: 1px solid #66ffff;
-	box-shadow: 1px 1px 1px #66ffff;
-	font-size: 18px;
-}
-#section_2
-{
-	border-top: 1px solid #33FF33;
-	box-shadow: 1px 1px 1px #33FF33;
+  text-decoration : none;
 }
