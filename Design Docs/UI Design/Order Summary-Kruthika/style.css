@@ -1,0 +1,129 @@
+.Table
+{
+    display: table;
+
+    font-family: 'trebuchet MS', 'Lucida sans', Arial;
+    font-size: 14px;
+    color: #444;
+
+
+    border-spacing: 0;
+    width: 100%;    
+
+    border: solid #ccc 1px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 1px #ccc; 
+    -moz-box-shadow: 0 1px 1px #ccc; 
+    box-shadow: 0 1px 1px #ccc;
+
+}
+.Title
+{
+    display: table-caption;
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+    background-color: #dce9f9;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+    background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:    -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:     -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:      -o-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:         linear-gradient(top, #ebf3fc, #dce9f9);
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;  
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
+    border-top: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5); 
+}
+
+.col-md-6, .Heading
+{
+	border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding-left: 10px;
+    text-align: left;
+    line-height: 25px;
+    height: 25px;    
+}
+.Heading,
+{
+    display: table-row;
+    background-color: #dce9f9;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+    background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:    -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:     -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:      -o-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:         linear-gradient(top, #ebf3fc, #dce9f9);
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;  
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
+    border-top: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5); 
+}
+.Row
+{
+    display: table-row;
+}
+
+.Row:nth-child(even)
+{
+	background: #E6F5FA;
+}
+
+.Row:hover
+{
+	background: #85A3FF;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;     
+}
+.col-md-6
+{
+    display: table-cell;
+    padding-top: 0px;
+}
+
+
+.col-md-6:first-child, .Heading:first-child {
+border-left: none;
+text-align: right;
+padding-right: 10px;
+padding-left: 0px;
+width: 50%;
+}
+
+.Heading:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+}
+
+.Heading:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+
+.Heading:only-child{
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.Row:last-child, .col-md-6:first-child {
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+
+.Row:last-child, .col-md-6:last-child {
+    -moz-border-radius: 0 0 6px 0;
+    -webkit-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+}
