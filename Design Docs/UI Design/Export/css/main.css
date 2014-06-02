@@ -15,12 +15,13 @@ body
 #wrapper_1,#wrapper_2
 {
 	background-color : 	#F2F6F6;
+	border : 0px solid black;
 }
 
 /*panel heading refers to just the filled banner at top of each collapsable*/
 #panel_heading_1,#panel_heading_2
 {
-	background-color: #66FFFF;
+	background-color: #99eeee;
 	font-size: 22px;
 }
 #panel_heading_2
@@ -31,7 +32,6 @@ body
 #toggle_1, #toggle_2
 {
 	width : 90%;
-	min-width : 450px;
 	margin : 0px auto;
 	background-color : white;
 	padding : 10px 20px;
@@ -41,16 +41,27 @@ body
 /*Section refers to the individual headings in the forms*/
 #section_1,#section_2
 {
-	margin: 5px 0px;
+	margin: 7px 0px;
 	padding: 5px 0px;
-	border: 1px solid #66ffff;
-	box-shadow: 1px 1px 1px #66ffff;
+	border: 1px solid #66eeee;
+	box-shadow: 1px 1px 1px #66eeee;
 	font-size: 20px;
 }
 #section_2
 {
 	border: 1px solid #33FF33;
 	box-shadow: 1px 1px 1px #33FF33;
+}
+#section_content_1
+{
+	border-left : 1px solid #66eeee;
+	border-right : 1px solid #66eeee;
+}
+
+/*the left coloumns which has to be right-aligned*/
+#right
+{
+ text-align:right;
 }
 
 /*the arrows to the right of each heading of a collapsable*/
