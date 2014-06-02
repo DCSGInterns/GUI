@@ -95,5 +95,50 @@
 	"payment": {
 		"paymentType": "CC - Credit Card"
 		}
-	}
+	},
+	"fulfillment": {
+		"fulfillmentUnit": "1",
+		"status": "Available",
+		"gedisQuoteNo": "50034610",
+		"NAKReason": {
+			"code": "S-EPS02",
+			"description": "Fail to Auth credit card. Server:M2VMNFRICSIT02 Action:ABORT Status:D Reason:REFUSED - INVALID CARD (IPNAK)"
+			},
+		"product": {
+			"productType": "Order Code",
+			"itemReference": "1",
+			"SNAItemDescription": "Dell - 8X Max DVD ROM for SFF OptiPlex 380 SFF, OptiPlex 580 SFF, OptiPlex 780 SFF, OptiPlex 960 SFF, OptiPlex 980 SFF",
+			"catalogSystem": "SNA",
+			"customerSetID": "audhs1",
+			"keycode": "",	 	
+			"isBundle?": "No",
+			"SKU": "357-10156"
+			},
+		"option": {
+			"optionID": "357-10156",
+			"MODNumber": "[YDXCJ]",
+			"MODDesc": "[CUS,DVD,8X,SATA,TSST,OPTI,960]",
+			"description": "Dell - 8X Max DVD ROM for SFF OptiPlex 380 SFF, OptiPlex 580 SFF, OptiPlex 780 SFF, OptiPlex 960 SFF, OptiPlex 980 SFF",
+			},
+		"brandDescription":	"---",
+		"quantity":	"1",
+		"unitPrice": "86.40 AUD",
+		"weight": "0",
+		"subtotal":	"86.40 AUD",
+		"shipping":	"0.00 AUD",
+		"itemTaxFee": "8.64 AUD",
+		"total": "95.04 AUD",
+		"pricing": {
+				"subtotal":	"86.40 AUD",
+				"shipping":	"0.00 AUD",
+				"itemTaxFee": "8.64 AUD",
+				"total": "95.04 AUD"
+			},
+		"orderPlacement": {
+			"irn":"AU0032-3852-05666"
+			},
+		"payment": {
+			
+			}
+	} 
 }
