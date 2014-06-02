@@ -1,0 +1,24 @@
+{
+	"orderGroup": {
+	"status": "Available",
+	"orderSummary": {
+		"irn": "AU0032-3852-05666",
+		"orderDateTime":	"4/16/2014 10:42:41 PM Malay Peninsula Standard Time",
+		"customerSetName": "audhs1",
+		"customerLanguageSelection": "en",
+		"customerSetId": "audhs1",
+		"onlineCompanyNumber": "29",
+		"onlineCustomerLinkNumber": "---",
+		"storeOwner": "---",
+		"premierId":	"---",
+		"sourceSystem":	"ECOMM",
+		"assistingSalesRep": "---",
+		"assistingSalesRepNumber": "---",
+		"subtotal": "86.40 AUD",
+		"shipping":	"0.00 AUD",
+		"paymentType": "CC - Credit Card",
+		"totalSellingPrice": "95.04 AUD",
+		"numberOfFulfillmentUnit":	"1"
+	}
+	}
+}
