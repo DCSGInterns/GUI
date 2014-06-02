@@ -8,8 +8,17 @@ background-color:#00BFFF;
 background-color:#00BFFF;
 }
 
+#btn1
+{
+width: 100%;
+}
 
-#bdy
+#btn2
+{
+width: 100%;
+}
+
+body
 {
 background-color: #D3D3D3;
 }
