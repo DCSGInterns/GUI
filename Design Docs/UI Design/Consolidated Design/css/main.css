@@ -34,11 +34,15 @@ body
 	padding :15px;
 	font-weight : bold;
 }
+.form-group
+{
+	margin : 3px;
+}
 
 /*Wrapper heading refer to main heading of each collapsable*/
 #wrapper_heading_1,#wrapper_heading_2
 {
-	font-size : 18px;
+	font-size : 16px;
 	color : white;
 	cursor : pointer;
 }
@@ -46,13 +50,10 @@ body
 #section_body_1,#section_body_2
 {
 	font-family: 'Roboto Condensed', sans-serif;
-	font-size: 16px;
+	font-size: 15px;
 }
 
 #toggle_image_1,#toggle_image_2
 {
-	height : 30px;
-	width : 30px;
 	float : right;
-
 }

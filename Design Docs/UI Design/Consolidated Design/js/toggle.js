@@ -6,6 +6,8 @@ var keeper_2=1;
 var scrolled = 0;
 var required = window.innerHeight;
 
+/*make consistent the window width*/
+var constwidth = window.innerWidth;
 
 $('#wrapper_heading_1').click(function () {
 
@@ -13,21 +15,16 @@ $('#wrapper_heading_1').click(function () {
 	{
     	$('#wrapper_body_1').slideDown('slow');
 		keeper=1;
-		$("#toggle_image_1").css({
-        "-webkit-transform": "rotate(0deg)",
-        "-moz-transform": "rotate(0deg)",
-        "-ms-transform": "rotate(0deg)"
-								});
+		$("#toggle_image_1").removeClass('glyphicon glyphicon-chevron-down')
+		$("#toggle_image_1").addClass('glyphicon glyphicon-chevron-up')
 	}
 	else if(keeper==1)
 	{
 	 $('#wrapper_body_1').slideUp('slow');
 	 keeper=0;
-	 $("#toggle_image_1").css({
-        "-webkit-transform": "rotate(180deg)",
-        "-moz-transform": "rotate(180deg)",
-        "-ms-transform": "rotate(180deg)"
-    });
+	 
+	 $("#toggle_image_1").removeClass('glyphicon glyphicon-chevron-up')
+	$("#toggle_image_1").addClass('glyphicon glyphicon-chevron-down')
 	}
 });
 
@@ -37,11 +34,10 @@ $('#wrapper_heading_2').click(function () {
 	{
     	$('#wrapper_body_2').slideDown('slow');
 		keeper_2=1;
-		$("#toggle_image_2").css({
-       "-webkit-transform": "rotate(0deg)",
-        "-moz-transform": "rotate(0deg)",
-        "-ms-transform": "rotate(0deg)" 
-								})
+		
+		$("#toggle_image_2").removeClass('glyphicon glyphicon-chevron-down')
+		$("#toggle_image_2").addClass('glyphicon glyphicon-chevron-up')
+		
 		scrolled = window.pageYOffset
 		scrolled = scrolled+required;
         $("body").animate({
@@ -50,12 +46,10 @@ $('#wrapper_heading_2').click(function () {
 	}
 	else if(keeper_2==1)
 	{
-	 $('#wrapper_body_2').slideUp('slow');
-	 keeper_2=0;
-		$("#toggle_image_2").css({
-       "-webkit-transform": "rotate(180deg)",
-        "-moz-transform": "rotate(180deg)",
-        "-ms-transform": "rotate(180deg)" 
-								})
+		$('#wrapper_body_2').slideUp('slow');
+		keeper_2=0;
+		
+		$("#toggle_image_2").removeClass('glyphicon glyphicon-chevron-up')
+		$("#toggle_image_2").addClass('glyphicon glyphicon-chevron-down')
 	}
 });
