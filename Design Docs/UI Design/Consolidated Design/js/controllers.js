@@ -1,17 +1,192 @@
-var GcmEmeaApp = angular.module('GcmEmeaApp', []);
+var GcmEmeaApp = angular.module('gcmEmeaApp', []);
 
-GcmEmeaApp.controller('DataCtrl', function ($scope, $http) {
-  $http.get('data/FormData.json').success(function(data) {
-    $scope.formData = data;
-  });
-  });
-  GcmEmeaApp.controller('ctrl1',function($scope) {
-  $scope.cases=[
-{heading:'BILLING', ti:'', ln:'Jose', fn:'Nithin', al1:'Google Australia Pty Ltd.', al2: 'Level 5, 48 Pirrama Road', al3: 'Pyrmount', al4:'', pc:'2009', occ:'au', st:'New South Wales,Australia', cs:'Pyrmount', cn:'Google Sydney', cne:'', gt1:'121231312', mob:'123123213'},
-{heading:'SHIPPING', ti:'', ln:'Jose', fn:'Nithin', al1:'Google Australia Pty Ltd.', al2: 'Level 5, 48 Pirrama Road', al3: 'Pyrmount', al4:'', pc:'2009', occ:'au', st:'New South Wales,Australia', cs:'Pyrmount', cn:'Google Sydney', cne:'', gt1:'121231312', mob:'123123213'}]
-
-  });
-  GcmEmeaApp.controller('ctrl2',function($scope) {
+GcmEmeaApp.controller('DataCtrl', function ($scope) {
+	$scope.formData= { 	
+	"orderGroup": {
+	"status": "Available",
+	"orderSummary": {
+		"irn": "AU0032-3852-05666",
+		"orderDateTime":	"4/16/2014 10:42:41 PM Malay Peninsula Standard Time",
+		"customerSetName": "audhs1",
+		"customerLanguageSelection": "en",
+		"customerSetId": "audhs1",
+		"onlineCompanyNumber": "29",
+		"onlineCustomerLinkNumber": "---",
+		"storeOwner": "---",
+		"premierId":	"---",
+		"sourceSystem":	"ECOMM",
+		"assistingSalesRep": "---",
+		"assistingSalesRepNumber": "---",
+		"subtotal": "86.40 AUD",
+		"shipping":	"0.00 AUD",
+		"paymentType": "CC - Credit Card",
+		"totalSellingPrice": "95.04 AUD",
+		"numberOfFulfillmentUnit":	"1"
+		},
+	"customer": {
+		"storeOSCR":"",	 	
+		"placedOSCR": "AU51021713",
+		"emailAddress": "Do not add name to mailing list",
+		"companyName": "Google Sydney",
+		"customerNameExt": "Jose",
+		"customerNameExt2":	"Nithin",
+		"addressLine1":	"Google Australia Pty Ltd.",
+		"addressLine2":	"Level 5, 48 Pirrama Road,",
+		"addressLine3":	"Pyrmont",
+		"addressLine4": "",	 	
+		"postCode": "2009",
+		"onlineCountryCode": "au",
+		"state": "New South Wales,Australia",
+		"citySuburb": "Pyrmont",
+		"email Address": "nithin_aus_test@dell.com",
+		"generalTelephone1": "1212 31312",
+		"mobile": "1231 23213"
+		},
+	"billing": {
+		"title":"",	 	
+		"lastName":	"Jose",
+		"firstName": "Nithin",
+		"addressLine1":	"Google Australia Pty Ltd.",
+		"addressLine2":	"Level 5, 48 Pirrama Road,",
+		"addressLine3":	"Pyrmont",
+		"addressLine4": "",	 	
+		"postCode":	"2009",
+		"onlineCountryCode": "au",
+		"state": "New South Wales,Australia",
+		"citySuburb": "Pyrmont",
+		"companyName": "Google Sydney",
+		"companyNameExt": "",	 	
+		"generalTelephone1": "1212 31312",
+		"mobile": "1231 23213"
+		},
+	   "shipping": {
+		"title":"",	 	
+		"lastName":	"Jose",
+		"firstName": "Nithin",
+		"addressLine1":	"Google Australia Pty Ltd.",
+		"addressLine2":	"Level 5, 48 Pirrama Road,",
+		"addressLine3":	"Pyrmont",
+		"addressLine4": "",	 	
+		"postCode":	"2009",
+		"onlineCountryCode": "au",
+		"state": "New South Wales,Australia",
+		"citySuburb": "Pyrmont",
+		"companyName": "Google Sydney",
+		"companyNameExt": "",	 	
+		"generalTelephone1": "1212 31312",
+		"mobile": "1231 23213"
+		},
+	"exportEndUserInformation": {
+		"exportProblem?": "No",
+		"title": "",	 	
+		"lastName": "Jose",
+		"firstName": "Nithin",
+		"addressLine1":	"Google Australia Pty Ltd.",
+		"addressLine2":	"Level 5, 48 Pirrama Road,",
+		"addressLine3":	"Pyrmont",
+		"addressLine4": "",	 	
+		"postCode":	"2009",
+		"onlineCountryCode": "au",
+		"state": "New South Wales,Australia",
+		"citySuburb": "Pyrmont",
+		"emailAddress":	"nithin_aus_test@dell.com",
+		"companyName": "Google Sydney",
+		"companyNameExt": "",	 	
+		"generalTelephone1": "1212 31312",
+		"Mobile": "1231 23213"
+		},
+	"payment": {
+		"paymentType": "CC - Credit Card"
+		}
+	},
+	"fulfillmentUnit": {
+		"fulfillmentUnit": "1",
+		"status": "Available",
+		"gedisQuoteNo": "50034610",
+		"NAKReason": {
+			"code": "S-EPS02",
+			"description": "Fail to Auth credit card. Server:M2VMNFRICSIT02 Action:ABORT Status:D Reason:REFUSED - INVALID CARD (IPNAK)"
+			},
+		"product": {
+			"productType": "Order Code",
+			"itemReference": "1",
+			"SNAItemDescription": "Dell - 8X Max DVD ROM for SFF OptiPlex 380 SFF, OptiPlex 580 SFF, OptiPlex 780 SFF, OptiPlex 960 SFF, OptiPlex 980 SFF",
+			"catalogSystem": "SNA",
+			"customerSetID": "audhs1",
+			"keycode": "",	 	
+			"isBundle?": "No",
+			"SKU": "357-10156"
+			},
+		"option": {
+			"optionID": "357-10156",
+			"MODNumber": "[YDXCJ]",
+			"MODDesc": "[CUS,DVD,8X,SATA,TSST,OPTI,960]",
+			"description": "Dell - 8X Max DVD ROM for SFF OptiPlex 380 SFF, OptiPlex 580 SFF, OptiPlex 780 SFF, OptiPlex 960 SFF, OptiPlex 980 SFF",
+			},
+		"brandDescription":	"---",
+		"quantity":	"1",
+		"unitPrice": "86.40 AUD",
+		"weight": "0",
+		"subtotal":	"86.40 AUD",
+		"shipping":	"0.00 AUD",
+		"itemTaxFee": "8.64 AUD",
+		"total": "95.04 AUD",
+		"pricing": {
+				"subtotal":	"86.40 AUD",
+				"shipping":	"0.00 AUD",
+				"itemTaxFee": "8.64 AUD",
+				"total": "95.04 AUD"
+			},
+		"orderPlacement": {
+			"irn":"AU0032-3852-05666"
+			},
+		"payment": {
+			"paymentType": "Credit Card",
+			"impactAmount":	"95.04 AUD",
+			"creditCard": {	 	
+				"cardType": "MASTER",
+				"cardIssuingBank": "test",
+				"cardIssuingCountry": "Australia",
+				"amount": "95.04 AUD",
+				"cardNumber": "xxxxxxxxxxxx5557",
+				"CSCNumber": "xxx",
+				"expirationDate": "x/xxxx",
+				"dailyLimit": "0.00 AUD",
+				"cardHolder": "NITHIN JOSE",
+				"billingContact": "Jose Nithin",
+				"%OrderPlacedOnCard": "100%",
+				"PONumber": "",	 	
+				"installments": "",	 	
+				"cardCheckNumber": ""
+			}	 	
+		},
+		"authenticationResult" : {
+			"title": "",	 	
+			"lastName":	"Jose",
+			"firstName": "Nithin",
+			"addressLine1":	"Google Australia Pty Ltd.",
+			"addressLine2":	"Level 5, 48 Pirrama Road,",
+			"addressLine3":	"Pyrmont",
+			"addressLine4": "",	 	
+			"postCode":	"2009",
+			"onlineCountryCode": "au",
+			"state": "New South Wales,Australia",
+			"citySuburb": "Pyrmont",
+			"emailAddress":	"nithin_aus_test@dell.com",
+			"companyName": "Google Sydney",
+			"companyNameExt": "",	 	
+			"generalTelephone1": "1212 31312",
+			"mobile": "1231 23213"
+		},
+		"shippingInstructions": {
+			"doorAccessCode": "Pyrmont",
+			"interphoneName": "New South Wales Australia"
+		}
+	} 
+}
+	});
+  
+ GcmEmeaApp.controller('ctrl2',function($scope) {
   $scope.fc=1;
 $scope.ard='up';
 $scope.clk=function(){
