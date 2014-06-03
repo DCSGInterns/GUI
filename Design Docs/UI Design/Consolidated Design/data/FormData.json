@@ -155,9 +155,8 @@
 				"PONumber": "",	 	
 				"installments": "",	 	
 				"cardCheckNumber": ""
-			}	 	
-		},
-		"authenticationResult" : {
+			},
+			"authenticationResult" : {
 			"title": "",	 	
 			"lastName":	"Jose",
 			"firstName": "Nithin",
@@ -174,7 +173,9 @@
 			"companyNameExt": "",	 	
 			"generalTelephone1": "1212 31312",
 			"mobile": "1231 23213"
+			}	 	
 		},
+		
 		"shippingInstructions": {
 			"doorAccessCode": "Pyrmont",
 			"interphoneName": "New South Wales Australia"
