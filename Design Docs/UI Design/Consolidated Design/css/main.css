@@ -1,10 +1,31 @@
+/*	seciton_heading_1 refers to headings within 1st collapsable ,
+	section_body_1 refers to content corresponding to heading ,
+	
+	seciton_heading_2 refers to headings within 2nd collapsable ,
+	section_body_2 refers to content corresponding to heading ,
+	
+	wrapper_heading_1 refers to heading of 1st collapsable
+	wrapper_content_1 to the content inside of the entire 1st collapsable ,
+	wrapper_heading_2 refers to heading of 2nd collapsable
+	wrapper_content_2 to the content inside the entire 2nd collapsable ,
+*/
 
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src : url(../fonts/Roboto.woff);
+}
 body
 {
 background-color: #F2F6F6;
 min-width : 250px;
 }
-
+.container
+{
+ margin : 0px;
+ width : 100%;
+}
 .panel
 {
  margin : 7px;

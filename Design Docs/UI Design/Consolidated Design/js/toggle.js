@@ -5,9 +5,7 @@ var keeper=1;
 var keeper_2=1;
 var scrolled = 0;
 var required = window.innerHeight;
-
-/*make consistent the window width*/
-var constwidth = window.innerWidth;
+required = required-40;
 
 $('#wrapper_heading_1').click(function () {
 
@@ -38,11 +36,13 @@ $('#wrapper_heading_2').click(function () {
 		$("#toggle_image_2").removeClass('glyphicon glyphicon-chevron-down')
 		$("#toggle_image_2").addClass('glyphicon glyphicon-chevron-up')
 		
+		if(keeper==1){
 		scrolled = window.pageYOffset
 		scrolled = scrolled+required;
         $("body").animate({
 				        scrollTop:scrolled
 				   });
+		}
 	}
 	else if(keeper_2==1)
 	{
