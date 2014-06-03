@@ -154,13 +154,12 @@ GcmEmeaApp.controller('DataCtrl', function ($scope) {
 				"dailyLimit": "0.00 AUD",
 				"cardHolder": "NITHIN JOSE",
 				"billingContact": "Jose Nithin",
-				"%OrderPlacedOnCard": "100%",
+				"perOrderPlacedOnCard": "100%",
 				"PONumber": "",	 	
 				"installments": "",	 	
 				"cardCheckNumber": ""
-			}	 	
-		},
-		"authenticationResult" : {
+			},
+        "authenticationResult" : {
 			"title": "",	 	
 			"lastName":	"Jose",
 			"firstName": "Nithin",
@@ -177,7 +176,10 @@ GcmEmeaApp.controller('DataCtrl', function ($scope) {
 			"companyNameExt": "",	 	
 			"generalTelephone1": "1212 31312",
 			"mobile": "1231 23213"
+		}
+        			
 		},
+
 		"shippingInstructions": {
 			"doorAccessCode": "Pyrmont",
 			"interphoneName": "New South Wales Australia"

@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="gcmEmeaApp">
 <head>
-<title>Print Fax View (DELL CONFIDENTIAL - HIGHLY RESTRICTED)</title>
-<link rel="icon" href="img/Dell2.ico" type="image/x-icon">
-<meta content="text/html; charset=utf-8" http-equiv=Content-Type>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
@@ -27,120 +22,120 @@
    <div class="panel-body">
       <form class="form-horizontal" role="form">
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">IRN : </label>
-            <div class="col-lg-6">
-               <p class="form-control-static" ng-bind="formData.orderGroup.orderSummary.irn"></p>
+          <label class="col-sm-6 control-label">IRN : </label>
+            <div class="col-sm-6">
+               <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.irn"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Order Date/Time : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Order Date/Time : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.orderDateTime"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Customer Set Name : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Customer Set Name : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.customerSetName"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Customer Language Selection : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Customer Language Selection : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.customerLanguageSelection"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Customer Set ID : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Customer Set ID : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.customerSetId"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Online Company Number : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Online Company Number : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.onlineCompanyNumber"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Online Customer Link Number : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Online Customer Link Number : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.onlineCustomerLinkNumber"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Store Owner : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Store Owner : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.storeOwner"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Premier ID : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Premier ID : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.premierId"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Source System : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Source System : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.sourceSystem"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Assisting Sales Rep : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Assisting Sales Rep : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.assistingSalesRep"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Assisting Sales Rep Number : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Assisting Sales Rep Number : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.assistingSalesRepNumber"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Subtotal : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Subtotal : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.subtotal"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Shipping : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Shipping : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.shipping"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Payment Type : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Payment Type : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.paymentType"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Total Selling Price : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Total Selling Price : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.totalSellingPrice"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Number of Fulfilment Units : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Number of Fulfilment Units : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.numberOfformData.fulfillmentUnit"></span></p>
             </div>
         </div>
@@ -163,120 +158,120 @@
    <div class="panel-body">
      <form class="form-horizontal" role="form">
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Store OSCR : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Store OSCR : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.storeOscr"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Placed OSCR : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Placed OSCR : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.placedOscr"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Email Address : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Email Address : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.emailAddress"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Company Name : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Company Name : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.companyName"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Customer Name Ext : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Customer Name Ext : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.customerNameExt"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Customer Name Ext 2 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Customer Name Ext 2 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.customerNameExt2"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Address Line 1 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Address Line 1 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.addressLine1"></span></p>
             </div>  
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Address Line 2 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Address Line 2 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.addressLine2"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Address Line 3 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Address Line 3 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.addressLine3"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Address Line 4 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Address Line 4 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.addressLine4"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Post Code : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Post Code : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.postCode"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Online Country Code : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Online Country Code : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.onlineCountryCode"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">State : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">State : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.state"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">City/Suburb : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">City/Suburb : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.citySuburb"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Email Address : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Email Address : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.emailAddress"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">General Telephone 1 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">General Telephone 1 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.generalTelephone1"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Mobile : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Mobile : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.customer.mobile"></span></p>
             </div>
         </div>
@@ -289,7 +284,7 @@
 </div>
 
 <div class="container" id="contact">
-<div class="col-lg-6">
+<div class="col-sm-6">
   <div class="panel panel-primary">
    <div class="panel-heading">
       <strong>BILLING</strong>
@@ -297,64 +292,64 @@
    <div class="panel-body">
       <form class="form-horizontal" role="form">
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Title : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Title : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.title}}</p>
             </div>
         </div>
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Last Name : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Last Name : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.lastName}}</p>
             </div>
         </div>
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">First Name : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">First Name : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.firstName}}</p>
             </div>
         </div>
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Address Line 1 : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Address Line 1 : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.addressLine1}}</p>
             </div>
         </div>
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Address Line 2 : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Address Line 2 : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.addressLine2}}</p>
             </div>
         </div>
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Address Line 3 : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Address Line 3 : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.addressLine3}}</p>
             </div>
         </div>
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Address Line 4 : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Address Line 4 : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{case.addressLine4}}</p>
             </div>
         </div>
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Post Code : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Post Code : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.postCode}}</p>
             </div>
         </div>
         
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Online Country Code : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Online Country Code : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.onlineCountryCode}}</p>
             </div>
          </div>
         
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">State : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">State : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.state}}</p>
             </div>
         </div>
@@ -364,7 +359,7 @@
   </div>
 </div>
 
-<div class="col-lg-6">
+<div class="col-sm-6">
   <div class="panel panel-primary">
    <div class="panel-heading">
       <strong>BILLING</strong>
@@ -372,64 +367,64 @@
    <div class="panel-body">
       <form class="form-horizontal" role="form">
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Title : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Title : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.title}}</p>
             </div>
         </div>
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Last Name : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Last Name : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.lastName}}</p>
             </div>
         </div>
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">First Name : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">First Name : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.firstName}}</p>
             </div>
         </div>
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Address Line 1 : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Address Line 1 : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.addressLine1}}</p>
             </div>
         </div>
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Address Line 2 : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Address Line 2 : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.addressLine2}}</p>
             </div>
         </div>
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Address Line 3 : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Address Line 3 : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.addressLine3}}</p>
             </div>
         </div>
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Address Line 4 : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Address Line 4 : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{case.addressLine4}}</p>
             </div>
         </div>
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Post Code : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Post Code : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.postCode}}</p>
             </div>
         </div>
         
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">Online Country Code : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">Online Country Code : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.onlineCountryCode}}</p>
             </div>
          </div>
         
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-4 control-label">State : </label>
-            <div class="col-lg-8">
+          <label class="col-sm-4 control-label">State : </label>
+            <div class="col-sm-8">
                <p class="form-control-static">{{formData.orderGroup.billing.state}}</p>
             </div>
         </div>
@@ -450,107 +445,107 @@
    <div class="panel-body">
      <form class="form-horizontal" role="form">
 	   <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Export Problem? : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Export Problem? : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.exportProblem?"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Title : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Title : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.title"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Last Name : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Last Name : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.lastName"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">First Name : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">First Name : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.firstName"></span></p>
             </div>
         </div>
 	 
 	 
 	   <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Address Line 1 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Address Line 1 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.addressLine1"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Address Line 2 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Address Line 2 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.addressLine2"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Address Line 3 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Address Line 3 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.addressLine3"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Address Line 4 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Address Line 4 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.addressLine4"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Post Code : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Post Code : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.postCode"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Online Country Code : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Online Country Code : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.onlineCountryCode"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">State : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">State : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.state"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">City/Suburb : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">City/Suburb : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.citySuburb"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Email Address : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Email Address : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.emailAddress"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">General Telephone 1 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">General Telephone 1 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.generalTelephone1"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Mobile : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Mobile : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.mobile"></span></p>
             </div>
         </div>
@@ -570,8 +565,8 @@
    <div class="panel-body">
      <form class="form-horizontal" role="form">
 	   <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Payment Type : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Payment Type : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.payment.paymentType"></span></p>
             </div>
         </div>
@@ -605,64 +600,64 @@
    <div class="panel-body">
      <form class="form-horizontal" role="form">
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Product Type : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Product Type : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.product.productType"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Item Reference : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Item Reference : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.product.itemReference"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Customer Set Name : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Customer Set Name : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.orderGroup.orderSummary.customerSetName"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">SNA Item Description : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">SNA Item Description : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.product.snaItemDescription"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Catalog System : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Catalog System : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.product.catalogSystem"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Customer Set ID : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Customer Set ID : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.product.customerSetId"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Key Code : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Key Code : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.product.keycode"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Is Bundle? : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Is Bundle? : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.product.isBundle"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">SKU : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">SKU : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.product.sku"></span></p>
             </div>
         </div>
@@ -687,29 +682,29 @@
    <div class="panel-body">
      <form class="form-horizontal" role="form">
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Subtotal : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Subtotal : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.pricing.subtotal"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Shipping Total : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Shipping Total : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.pricing.shippingTotal"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Estimated Tax/Fee : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Estimated Tax/Fee : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.pricing.estimatedTaxFee"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Total : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Total : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.pricing.total"></span></p>
             </div>
         </div> 
@@ -725,8 +720,8 @@
    <div class="panel-body">
      <form class="form-horizontal" role="form">
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">IRN : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">IRN : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.orderPlacement.irn"></span></p>
             </div>
         </div>
@@ -743,212 +738,212 @@
    <div class="panel-body">
      <form class="form-horizontal" role="form">
         <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Payment Type : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Payment Type : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.paymentType"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Impact Amount : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Impact Amount : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.impactAmount"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Card Type : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Card Type : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.cardType"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Card Issuing Bank : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Card Issuing Bank : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.cardIssuingBank"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Card Issuing Country : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Card Issuing Country : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.cardIssuingCountry"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Amount : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Amount : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.amount"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Card Number : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Card Number : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.cardNumber"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">CSC Number : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">CSC Number : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.cscNumber"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Expiration Date : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Expiration Date : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.expirationDate"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Daily Limit : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Daily Limit : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.dailyLimit"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Card Holder : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Card Holder : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.cardHolder"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Billing Contact : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Billing Contact : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.billingContact"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">% Order Placed on Card : </label>
-            <div class="col-lg-6">
-               <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.%OrderPlacedOnCard"></span></p>
+          <label class="col-sm-6 control-label">% Order Placed on Card : </label>
+            <div class="col-sm-6">
+               <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.perOrderPlacedOnCard"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">PO Number : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">PO Number : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.PONumber"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Installments: </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Installments: </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.installments"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Card Check Number : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Card Check Number : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.cardCheckNumber"></span></p>
             </div>
         </div>
 		<!--Authentiacatin Result-->
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Title : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Title : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.authenticationResult.title"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Last Name : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Last Name : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.authenticationResult.lastName"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">First Name : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">First Name : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.authenticationResult.firstName"></span></p>
             </div>
         </div>
 	 
 	 
 	   <div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Address Line 1 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Address Line 1 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.authenticationResult.addressLine1"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Address Line 2 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Address Line 2 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.authenticationResult.addressLine2"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Address Line 3 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Address Line 3 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.authenticationResult.addressLine3"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Address Line 4 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Address Line 4 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.authenticationResult.addressLine4"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Post Code : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Post Code : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.authenticationResult.postCode"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Online Country Code : </label>
-            <div class="col-lg-6">
-               <p class="form-control-static"><span ng-bind="formData.orderGroup.exportEndUserInformation.onlineCountryCode"></span></p>
+          <label class="col-sm-6 control-label">Online Country Code : </label>
+            <div class="col-sm-6">
+               <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.authenticationResult.onlineCountryCode"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">State : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">State : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.authenticationResult.state"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">City/Suburb : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">City/Suburb : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.authenticationResult.citySuburb"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Email Address : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Email Address : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.authenticationResult.emailAddress"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">General Telephone 1 : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">General Telephone 1 : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.authenticationResult.generalTelephone1"></span></p>
             </div>
         </div>
 		
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-          <label class="col-lg-6 control-label">Mobile : </label>
-            <div class="col-lg-6">
+          <label class="col-sm-6 control-label">Mobile : </label>
+            <div class="col-sm-6">
                <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.authenticationResult.mobile"></span></p>
             </div>
         </div>
