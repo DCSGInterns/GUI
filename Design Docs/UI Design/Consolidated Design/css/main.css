@@ -31,8 +31,11 @@ min-width : 250px;
  margin : 7px;
 }
 
-.panel-heading
+
+.panel-primary>.panel-heading
 {
+	background: -moz-linear-gradient(-90deg, #295697, #448CCB);
+ 	background: -webkit-gradient(linear, left top, left bottom, from(#295697), to(#448CCB));
 	padding :15px;
 	font-weight : bold;
 }
