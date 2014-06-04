@@ -18,7 +18,8 @@
    
    </div>
    <div class="panel-body" id="wrapper_body_1">
-
+<div class="container" id="details">
+<div class="col-sm-6 col-md-6 col-lg-6">
 <div class="panel panel-primary">
   <div class="panel-heading">
       <strong>ORDER SUMMARY</strong>
@@ -155,7 +156,8 @@
    
    </div>
 </div>
-
+</div>
+<div class="col-sm-6 col-md-6 col-lg-6">
 <div class="panel panel-primary">
   <div class="panel-heading">
       <strong>CUSTOMER</strong>
@@ -287,7 +289,8 @@
    
    </div>
 </div>
-
+</div>
+</div>
 <div class="container" id="contact">
 <div class="col-sm-6 col-md-6 col-lg-6">
   <div class="panel panel-primary">
@@ -714,7 +717,7 @@
             </div>
         </div> 
    
-   
+	 </form>
    </div>
 </div>
 
@@ -828,7 +831,7 @@
 		<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
           <label class="col-sm-6 col-md-6 col-lg-6 control-label">% Order Placed on Card : </label>
             <div class="col-sm-6 col-md-6 col-lg-6">
-               <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.%OrderPlacedOnCard"></span></p>
+               <p class="form-control-static"><span ng-bind="formData.fulfillmentUnit.payment.creditCard.perOrderPlacedOnCard"></span></p>
             </div>
         </div>
 		
@@ -962,7 +965,7 @@
 
 </div>
 </div>
-</div>
+
 
       <div id="footer">
             DELL CONFIDENTIAL - HIGHLY RESTRICTED<br/>
