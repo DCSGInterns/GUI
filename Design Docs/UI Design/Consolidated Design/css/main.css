@@ -36,6 +36,12 @@ min-width : 250px;
 	padding :15px;
 	font-weight : bold;
 }
+.col-lg-6, .col-md-6, .col-sm-6
+{
+	margin: 0xp 15px;
+}
+.panel-body
+{}
 
 #contact
 {
