@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<div ng-controller="ItemCtrl">
-			<div class="panel-primary" ng-repeat="item in formData.OrderGroup.OrderForms.OrderForm.Items.Item">
+			<div class="panel panel-primary" ng-repeat="item in formData.OrderGroup.OrderForms.OrderForm.Items.Item">
 				<div class="panel-heading" id="wrapper_heading_1">
 					<strong>Item Details</strong> <span class="glyphicon glyphicon-chevron-up" id="toggle_image_1"></span>
 				</div>
@@ -35,24 +35,24 @@
                         </div>
 						</div>
 					</form>							
-						<div class="row">
-							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>Promotion Type</strong></div>
-							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>Coupon ID</strong></div>
-							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>Promotion ID</strong></div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><strong>Promotion Description</strong></div>
-							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><strong>Promotion Start Date</strong></div>
-							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><strong>Promotion End Date</strong></div>
-							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>Total Impact</strong></div>
-						</div>
-						<div class="row" ng-repeat="promotion in item.PriceAdjustments.PriceAdjustment">
-							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="promotion.CouponFlag"></div>
-							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="promotion.Id"></div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-bind="promotion.ShortDescription"></div>
-							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-bind="promotion.DateStart"></div>
-							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-bind="promotion.DateEnd"></div>
-							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="promotion.TotalImpact"></div>
-						</div>
+					<div class="row">
+						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>Promotion Type</strong></div>
+						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>Coupon ID</strong></div>
+						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>Promotion ID</strong></div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><strong>Promotion Description</strong></div>
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><strong>Promotion Start Date</strong></div>
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><strong>Promotion End Date</strong></div>
+						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>Total Impact</strong></div>
+					</div>
+					<div class="row" ng-repeat="promotion in item.PriceAdjustments.PriceAdjustment">
+						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="promotion.CouponFlag"></div>
+						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="promotion.Id"></div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-bind="promotion.ShortDescription"></div>
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-bind="promotion.DateStart"></div>
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-bind="promotion.DateEnd"></div>
+						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="promotion.TotalImpact"></div>
+					</div>
 					<form class="form-horizontal" role="form">
 						<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Base: </label>
@@ -165,23 +165,20 @@
 						</div>
 						
 					</form>
-						<div class="row">
-							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>Module Number</strong></div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><strong>Legend Code</strong></div>
-							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>Price</strong></div>
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><strong>SKUs</strong></div>
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><strong>Description</strong></div>
-						</div>
-						
-						<div class="row" ng-repeat="module in item.ConfigDetails.Modules.Module">
-							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Sequence"></div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-bind="module.DefaultOption"></div>
-							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Options.Option.OriginalPrice"></div>
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ><span ng-repeat="sku in module.Options.Option.Skus.Sku"><span ng-bind="sku.Id"></span><span>&nbsp </span></span></div>
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-bind="module.Options.Option.Description"></div>
-						</div>
-						
-					
+					<div class="row">
+						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>Module Number</strong></div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><strong>Legend Code</strong></div>
+						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>Price</strong></div>
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><strong>SKUs</strong></div>
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><strong>Description</strong></div>
+					</div>
+					<div class="row" ng-repeat="module in item.ConfigDetails.Modules.Module">
+						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Sequence"></div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-bind="module.DefaultOption"></div>
+						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Options.Option.OriginalPrice"></div>
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ><span ng-repeat="sku in module.Options.Option.Skus.Sku"><span ng-bind="sku.Id"></span><span>&nbsp </span></span></div>
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-bind="module.Options.Option.Description"></div>
+					</div>
 				</div>
 			</div>
 		</div>
