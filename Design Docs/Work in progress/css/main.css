@@ -87,3 +87,13 @@ padding-right: 0px;
   text-decoration : none;
 }
 
+.row:nth-child(even)
+{
+	background: #E6F5FA;
+}
+
+.row:first-child
+{
+	background: #0085c3;
+	color: white;
+}
