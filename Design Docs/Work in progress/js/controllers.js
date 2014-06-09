@@ -9079,6 +9079,23 @@ GcmEmeaApp.controller('ItemCtrl', function ($scope) {
     "OpportunityID": null
   }
 }
+	$scope.getFulfillmentUnit=function(itemId) {
+	var x=$scope.formData.OrderGroup.OrderForms.OrderForm.FulfillmentUnits.FulfillmentUnit;
+	//return(x[0].ComplexConfigId);
+	for(var i=0,len1=x.length;i<len1;i++)
+	{
+	  y=x[i].FulfillmentItemInformation.FulfillmentItemInformation;
+	  for(var j=0,len2=y.length;j<len2;j++)
+	  {
+	    if(y[j].ItemId==itemId)
+		{return(x[i]);}
+	  }
+	
+	}
+	
+	
+	}
+	
 	});
   
  GcmEmeaApp.controller('ctrl2',function($scope) {
