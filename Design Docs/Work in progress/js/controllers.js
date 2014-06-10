@@ -9095,7 +9095,12 @@ GcmEmeaApp.controller('ItemCtrl', function ($scope) {
 	
 	
 	}
-	
+	$scope.emptyCheck=function(arr){
+	if(arr.length==0)
+	{return 1;}
+	else
+	{return 0;}
+	}
 	});
   
  GcmEmeaApp.controller('ctrl2',function($scope) {
