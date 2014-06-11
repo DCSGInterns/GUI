@@ -51,8 +51,11 @@ min-width : 250px;
 {
 	margin: 0xp 15px;
 }
-.panel-body
-{}
+
+#slideable-body
+{
+display: none;
+}
 
 #contact,#details
 {
@@ -67,7 +70,7 @@ padding-right: 0px;
 	cursor : pointer;
 }
 
-#toggle_image_1,#toggle_image_2
+#toggle_image
 {
 	float : right;
 }

@@ -8,11 +8,11 @@
 	</head>
 	<body>
 		<div ng-controller="ItemCtrl">
-			<div class="panel panel-primary" ng-repeat="item in formData.OrderGroup.OrderForms.OrderForm.Items.Item">
-				<div class="panel-heading" id="wrapper_heading_1">
-					<strong>Item Details</strong> <span class="glyphicon glyphicon-chevron-up" id="toggle_image_1"></span>
+			<div class="panel panel-primary" ng-repeat="item in formData.OrderGroup.OrderForms.OrderForm.Items.Item" id="slideable">
+				<div class="panel-heading">
+					<strong>Item Details</strong> <span class="glyphicon glyphicon-chevron-down" id="toggle_image"></span>
 				</div>
-				<div class="panel-body" id="wrapper_body_1">
+				<div class="panel-body" id="slideable-body">
 					<div class="container">
 						<div class="col-sm-6 col-md-6 col-lg-6">
 							<div class="panel panel-primary">
@@ -63,7 +63,7 @@
 										<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
 										<label class="col-sm-6 col-md-6 col-lg-6 control-label">Customer Set ID: </label>
 										<div class="col-sm-6 col-md-6 col-lg-6">
-											<p class="form-control-static" ng-bind="item.CustomerSet"></p>
+											<p class="form-control-static" ng-bind="formData.OrderGroup.CommerceContext.CustomerSet"></p>
 										</div>
 										</div>
 										
@@ -215,5 +215,7 @@
 	  	<script src="js/controllers.js"></script>
 	  	<script src="js/toggle.js"></script>
       	<script src="js/main.js"></script>
+
+		
 	</body>
 </html>
