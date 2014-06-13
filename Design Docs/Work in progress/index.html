@@ -7,10 +7,68 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.10/angular.min.js"></script>
 	</head>
 	<body>
+		<div ng-controller="OgSummaryCtrl">
+			<div class="panel panel-primary" id="slideable">
+				<div class="panel-heading" id="slideable-heading">
+					<strong>Order Group Summary</strong> <span class="glyphicon glyphicon-chevron-down" id="toggle_image"></span>
+				</div>
+				<div class="panel-body" id="slideable-body">
+					<div class="container">
+						<div class="col-sm-6 col-md-6 col-lg-6">
+							<div class="panel panel-primary">
+								<div class="panel-body">
+									<form class="form-horizontal" role="form">
+										<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
+										<label class="col-sm-6 col-md-6 col-lg-6 control-label">Date Entered: </label>
+										<div class="col-sm-6 col-md-6 col-lg-6">
+											<p class="form-control-static" ng-bind="dateCalc(formData.OrderGroup.DateCreated)"></p>
+										</div>
+										</div>
+										
+										<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
+										<label class="col-sm-6 col-md-6 col-lg-6 control-label">Customer Set ID: </label>
+										<div class="col-sm-6 col-md-6 col-lg-6">
+											<p class="form-control-static" ng-bind="formData.OrderGroup.CommerceContext.CustomerSet"></p>
+										</div>
+										</div>
+										
+										<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
+										<label class="col-sm-6 col-md-6 col-lg-6 control-label">Online Company Number: </label>
+										<div class="col-sm-6 col-md-6 col-lg-6">
+											<p class="form-control-static" ng-bind="formData.OrderGroup.CommerceContext.CompanyNumber"></p>
+										</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-sm-6 col-md-6 col-lg-6">
+							<div class="panel panel-primary">
+								<div class="panel-body">
+									<form class="form-horizontal" role="form">
+										<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
+										<label class="col-sm-6 col-md-6 col-lg-6 control-label">Item Description: </label>
+										<div class="col-sm-6 col-md-6 col-lg-6">
+											<p class="form-control-static" ng-bind="item.Description"></p>
+										</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
 		<div ng-controller="ItemCtrl">
 			<div class="panel panel-primary" ng-repeat="item in formData.OrderGroup.OrderForms.OrderForm.Items.Item" id="slideable">
-				<div class="panel-heading">
-					<strong>Item Details</strong> <span class="glyphicon glyphicon-chevron-down" id="toggle_image"></span>
+				<div class="panel-heading" id="slideable-heading">
+					<strong>Item Details #<span ng-bind="$index+1"></span></strong> <span class="glyphicon glyphicon-chevron-down" id="toggle_image"></span>
 				</div>
 				<div class="panel-body" id="slideable-body">
 					<div class="container">
@@ -63,7 +121,7 @@
 										<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
 										<label class="col-sm-6 col-md-6 col-lg-6 control-label">Customer Set ID: </label>
 										<div class="col-sm-6 col-md-6 col-lg-6">
-											<p class="form-control-static" ng-bind="formData.OrderGroup.CommerceContext.CustomerSet"></p>
+											<p class="form-control-static" ng-bind="item.CustomerSet"></p>
 										</div>
 										</div>
 										
@@ -84,7 +142,7 @@
 										<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
 										<label class="col-sm-6 col-md-6 col-lg-6 control-label">TAA Compliance: </label>
 										<div class="col-sm-6 col-md-6 col-lg-6">
-											<p class="form-control-static" ng-bind="item.TaaComplianceStatus.TaaCompliant.nil"></p>
+											<p class="form-control-static" ng-bind="find_val(item.TaaComplianceStatus.TaaCompliant)"></p>
 										</div>
 										</div>
 									</form>
@@ -98,21 +156,28 @@
 										<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
 										<label class="col-sm-6 col-md-6 col-lg-6 control-label">GSA Compliance: </label>
 										<div class="col-sm-6 col-md-6 col-lg-6">
-											<p class="form-control-static" ng-bind="item.TaaComplianceStatus.GsaCompliant.@xsi:nil"></p>
+											<p class="form-control-static" ng-bind="item.TaaComplianceStatus.GsaCompliant"></p>
 										</div>
 										</div>
 										
 										<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
 										<label class="col-sm-6 col-md-6 col-lg-6 control-label">Replacement Part: </label>
 										<div class="col-sm-6 col-md-6 col-lg-6">
-											<p class="form-control-static" ng-bind="item.TaaComplianceStatus.ReplacementPart.@xsi:nil"></p>
+											<p class="form-control-static" ng-bind="item.TaaComplianceStatus.ReplacementPart"></p>
+										</div>
+										</div>
+										
+										<div ng-hide="isnull(item.lease)" class="form-group ng-hide" onmouseover="hvr(this)" onmouseout="out(this)">
+										<label class="col-sm-6 col-md-6 col-lg-6 control-label">Lease Detail: </label>
+										<div class="col-sm-6 col-md-6 col-lg-6">
+											<p class="form-control-static" ng-bind="item.lease.LeaseDetail"></p>
 										</div>
 										</div>
 										
 										<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
 										<label class="col-sm-6 col-md-6 col-lg-6 control-label">Key Code: </label>
 										<div class="col-sm-6 col-md-6 col-lg-6">
-											<p class="form-control-static"></p>
+											<p class="form-control-static" ng-bind="item.AdvertisementCode"></p>
 										</div>
 										</div>
 										
@@ -124,8 +189,10 @@
 										</div>
 										
 										<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
-										<label class="col-sm-6 col-md-6 col-lg-6 control-label">CFI Comments </label>
-										
+										<label class="col-sm-6 col-md-6 col-lg-6 control-label">CFI Comments: </label>
+										<div class="col-sm-6 col-md-6 col-lg-6">
+											<span ng-repeat="comment in item.ConfigDetails.CfiComments"><p class="form-control-static"><span ng-bind="comment.Label"></span> <span ng-bind="comment.Value"></span></p></span>
+										</div>
 										</div>
 										
 										<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
@@ -138,21 +205,43 @@
 										<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
 										<label class="col-sm-6 col-md-6 col-lg-6 control-label">Is Fast Track: </label>
 										<div class="col-sm-6 col-md-6 col-lg-6">
-											<p class="form-control-static" ng-bind="item.IsFastTrackEligible"></p>
+											<p class="form-control-static" ng-bind="item.FastTrack"></p>
 										</div>
 										</div>
 										
 										<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
 										<label class="col-sm-6 col-md-6 col-lg-6 control-label">Is BTS: </label>
 										<div class="col-sm-6 col-md-6 col-lg-6">
-											<p class="form-control-static"></p>
+											<p class="form-control-static" ng-bind="item.BuildToStock"></p>
 										</div>
 										</div>
 										
 										<div class="form-group" onmouseover="hvr(this)" onmouseout="out(this)">
 										<label class="col-sm-6 col-md-6 col-lg-6 control-label">Is ATS: </label>
 										<div class="col-sm-6 col-md-6 col-lg-6">
-											<p class="form-control-static"></p>
+											<p class="form-control-static" ng-bind="isAts(item)"></p>
+											
+										</div>
+										</div>
+										
+										<div class="form-group ng-hide" ng-show="isAts(item)" onmouseover="hvr(this)" onmouseout="out(this)">
+										<label class="col-sm-6 col-md-6 col-lg-6 control-label">ATS Reservation ID: </label>
+										<div class="col-sm-6 col-md-6 col-lg-6">
+											<p class="form-control-static" ng-bind="item.StockReservationId"></p>
+										</div>
+										</div>
+										
+										<div class="form-group ng-hide" ng-hide="isnull(item.MoBro)" onmouseover="hvr(this)" onmouseout="out(this)">
+										<label class="col-sm-6 col-md-6 col-lg-6 control-label">MOBRO Activation ID: </label>
+										<div class="col-sm-6 col-md-6 col-lg-6">
+											<p class="form-control-static" ng-bind="item.MoBro.ActivationID"></p>
+										</div>
+										</div>
+										
+										<div class="form-group ng-hide" ng-hide="isnull(item.MoBro)" onmouseover="hvr(this)" onmouseout="out(this)">
+										<label class="col-sm-6 col-md-6 col-lg-6 control-label">MOBRO Status: </label>
+										<div class="col-sm-6 col-md-6 col-lg-6">
+											<p class="form-control-static" ng-bind="item.MoBro.Status"></p>
 										</div>
 										</div>
 										
@@ -187,7 +276,7 @@
 							</div>
 						</div>
 					</div>	
-					<div ng-hide="emptyCheck(item.ConfigDetails.Modules.Module)" class="ng-hide">	
+					<div ng-hide="skuCheck(item)" class="ng-hide">	
 						<div class="panel panel-primary">
 							<div class="panel-body">
 								<div class="row">
@@ -201,7 +290,10 @@
 									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Sequence"></div>
 									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-bind="module.DefaultOption"></div>
 									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Options.Option.OriginalPrice"></div>
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ><span ng-repeat="sku in module.Options.Option.Skus.Sku"><span ng-bind="sku.Id"></span><span>&nbsp </span></span></div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" >
+										<span ng-hide="isArray(module.Options.Option.Skus.Sku)" class="ng-hide"> <span ng-bind="module.Options.Option.Skus.Sku.Id"></span> </span>
+										<span ng-repeat="sku in module.Options.Option.Skus.Sku"><span ng-bind="sku.Id"></span><span>&nbsp </span></span>
+									</div>
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-bind="module.Options.Option.Description"></div>
 								</div>
 							</div>
