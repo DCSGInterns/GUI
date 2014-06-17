@@ -210,7 +210,7 @@ GcmEmeaApp.controller('ItemCtrl', function ($scope) {
         "Items": {
           "Item": [
             {
-			  "@xsi:type": "SNAItem",
+              "@xsi:type": "SNAItem",
               "Id": "b99ad84e-4fa3-420e-894c-0065993719b9",
               "CustomerSet": "19",
               "Quantity": "1",
@@ -9347,7 +9347,7 @@ GcmEmeaApp.controller('ItemCtrl', function ($scope) {
         "Items": {
           "Item": [
             {
-			  "@xsi:type": "SNAItem",
+              "@xsi:type": "SNAItem",
               "Id": "b99ad84e-4fa3-420e-894c-0065993719b9",
               "CustomerSet": "19",
               "Quantity": "1",
@@ -18221,9 +18221,47 @@ GcmEmeaApp.controller('ItemCtrl', function ($scope) {
 		//return d.toUTCString;
 		return date;
 	}
- 
- 
- 
+	$scope.getStoreOwner=function(p_contacts){
+            if (p_contacts != null)
+            {
+                for (i=0,len=p_contacts.length;i<len;i++)
+                {
+                    if (p_contacts[i].IsStoreOwner=="true")
+                    {
+                        return p_contacts[i];
+                    }
+                }
+            }
+            return null;
+        }
+	$scope.getStoreOwnerName=function(accountTeam){
+	var oDellContact=getStoreOwner(accountTeam);
+	var sStoreOwner;
+	if (oDellContact != null)
+                {
+                    if (oDellContact.Name != null)
+                    {
+                        var sFirst = ((oDellContact.Name.First != null) && (oDellContact.Name.First.trim() != ""))
+                                     ? oDellContact.Name.First.trim() + " "
+                                     : "";
+                        var sMI = ((oDellContact.Name.MI != null) && (oDellContact.Name.MI.trim() != ""))
+                                  ? oDellContact.Name.MI.trim() + ". "
+                                  : "";
+                        var sLast = ((oDellContact.Name.Last != null) && (oDellContact.Name.Last.trim() != ""))
+                                    ? oDellContact.Name.Last.trim()
+                                    : "";
+                        if ((sFirst + sMI + sLast).length > 0)
+                        {
+                            sStoreOwner = sFirst + sMI + sLast;
+                        }
+                    }
+                }
+	return(sStoreOwner);
+	}
+	$scope.getQuote=function(x){
+	var y=(x>0)?x:null;
+	return y;
+	}
  
  });
  
