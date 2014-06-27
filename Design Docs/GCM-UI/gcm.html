@@ -27,8 +27,14 @@
 		</div>
 	</div>
 	
+
+	<div>
+		<input type="text" class="form-control" placeholder="DPID" ng-model="dpid"></input>
+		<button type="button" class="btn btn-default" ng-click="submit()">Submit</button>
+	</div>
+
 	<div class="container">
-	<div id="loader_part" ng-show="loading">Loading<br/><img src="img/11.gif"/></div>
+	<div id="loader_part" ng-show="loading && waiting">Loading<br/><img src="img/11.gif"/></div>
 	
 	<accordion close-others="true" ng-hide="loading">
 		<accordion-group>
@@ -412,7 +418,64 @@
 				</accordion-group>
 				<accordion-group>
 					<accordion-heading>Payment Information</accordion-heading>
-					content
+					<div id="panel_content">
+						<div ng-repeat="payment in createArray(formData.OrderGroup.PaymentMethods.BasicPaymentMethod)">
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Payment Type : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="isnull(payment.PaymentDescription)?'Not Provided':(payment.PaymentDescription)"></span>
+							</div>
+							<div class="row" ng-repeat="impact in createArray(unit.PaymentImpacts)" ng-if="impact.PaymentMethodImpact.PaymentMethodId==payment.ID">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Impact Amount : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="impact.PaymentMethodImpact.Impact"></span>
+							</div>
+							<br/><br/>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Name : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6">{{payment.BillingContact.Name.First}} {{payment.BillingContact.Name.MI}} {{payment.BillingContact.Name.Last}}</span>
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Email Address : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="payment.BillingContact.EmailAddress.Email"></span>
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address1 : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="payment.BillingContact.Address.Line1"></span>
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address2 : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="payment.BillingContact.Address.Line2"></span>
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">City : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="payment.BillingContact.Address.City"></span>
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Zip : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="payment.BillingContact.Address.PostalCode"></span>
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">State : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="payment.BillingContact.Address.Region"></span>
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Country : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="payment.BillingContact.Address.Country"></span>
+							</div>
+							<br/><br/>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">PO Number : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="payment.PONumber"></span>
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">PO Authorization Code : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="payment.POAuthCode"></span>
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Amount : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="payment.Amount"></span>
+							</div>
+						</div>
+					</div>
 				</accordion-group>
 				<accordion-group>
 					{{init_shipInfo(form.ShippingInformation)}}
