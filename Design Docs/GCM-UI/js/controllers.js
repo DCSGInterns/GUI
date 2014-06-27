@@ -6,7 +6,9 @@ var gcmControllerModule =  angular.module('gcmApp.controllers', ['ui.bootstrap',
 /*StudentController: controller for  students*/
 
 gcmControllerModule.controller('gcmCtrl', function ($scope,$http,ngProgress) {
+$scope.dpid;
 $scope.loading="true";
+$scope.waiting="false"
 $scope.formData;
 $scope.form;
 $scope.contact;
@@ -9090,12 +9092,19 @@ $scope.shipInfo;
   }
 }
 */
-ngProgress.start();
-$http.get('http://wn7x64-1gmw5z1/DellAPI/api/OrderGroup/GetOrderGroup/2000001108743').success(function(data) {
+$scope.submit=function(){
+  $scope.waiting=true;
+  $scope.loading=true;
+  ngProgress.start();
+  $http.get('http://wn7x64-1gmw5z1/DellAPI/api/OrderGroup/GetOrderGroup/'+$scope.dpid).success(function(data) {
     $scope.formData = data;
-	$scope.loading=false;
-	ngProgress.complete();
-  });
+  $scope.loading=false;
+  $scope.waiting=false;
+  ngProgress.complete();
+  });  
+}
+
+
  
  
  $scope.createArray=function(obj){
