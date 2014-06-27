@@ -1,0 +1,83 @@
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src : url(../fonts/Roboto.woff);
+}
+@font-face {
+  font-family: 'Dosis';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/Dosis.woff);
+}
+
+label
+{
+text-align: right;
+}
+
+.container
+{
+ width: 100%;
+}
+
+.panel-default>.panel-heading
+{
+ cursor: pointer;
+ background-color: #DDFFFF;
+}
+
+.panel-title
+{
+font-family: 'Roboto Condensed', sans-serif;
+}
+
+.panel-title>a
+{
+text-decoration: none;
+}
+
+.panel-body>.container
+{
+ width: 91%;
+ background-color : white;
+ box-shadow : 1px 1px 5px black;
+}
+
+#loader_part
+{
+font-family: 'Roboto Condensed', sans-serif;
+text-align: center;
+font-size: 18px;
+}
+
+#table
+{
+ margin-top : 10px;
+ font-family: 'Dosis', sans-serif;
+ font-size : 16px;
+}
+#table_header
+{
+ /*background-color:#0085c3;#FF7519;
+ color : white;*/
+ font-family: 'Roboto Condensed', sans-serif;
+ font-size: 18px;
+ padding : 10px 0px;
+ text-align : center;
+}
+#table_content>div
+{
+ text-align : center;
+ padding-bottom : 5px;
+}
+
+#table_content>.row:nth-child(2n+1)
+{
+ background-color :#DDFFFF;
+}
+#table_content>.row:nth-child(2n)
+{
+ background-color :#EEFFFF;
+}
+

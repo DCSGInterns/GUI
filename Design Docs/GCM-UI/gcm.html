@@ -1,0 +1,479 @@
+<!DOCTYPE HTML>
+<html ng-app="gcmApp">
+<head>
+	<title>Print Fax View</title>
+	<link rel="icon" href="img/Dell2.ico" type="image/x-icon">
+	
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<!-- Bootstrap/jquery UI--> 
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<!--link href="css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet"-->
+	<!-- Specific Styling -->
+	<link href="css/header_body_footer.css" rel="stylesheet"  type="text/css">
+	<link href="css/modal.css" rel="stylesheet"  type="text/css">
+	<link href="css/main.css" rel="stylesheet"  type="text/css">
+	<link href="css/ngProgress.css" rel="stylesheet"  type="text/css">
+	<!-- Angular -->
+	<script src="js/angular.min.js"></script>
+	
+</head>
+<body ng-controller="gcmCtrl">
+	<div id="header">
+		<div id="header_content">
+		<img src="img/Dell_logo.png">
+		<div id="header_title"> &nbsp Print Fax View</div> 
+		</div>
+	</div>
+	
+	<div class="container">
+	<div id="loader_part" ng-show="loading">Loading<br/><img src="img/11.gif"/></div>
+	
+	<accordion close-others="true" ng-hide="loading">
+		<accordion-group>
+			<accordion-heading>Order Group Summary</accordion-heading>
+			<div class="col-sm-6 col-md-6 col-lg-6">
+				<div id="panel_content">
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Date Entered : </label>
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup.DateCreated"></span>
+					</div>
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Customer Set ID : </label>
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup.CommerceContext.CustomerSet"></span>
+					</div>
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Online Company Number : </label>
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup.CommerceContext.CompanyNumber"></span>
+					</div>
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Online Customer Link Number : </label>
+						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+					</div>
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Store Owner : </label>
+						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+					</div>
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Premier ID : </label>
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup.CommerceContext.SimpleProfile.PremierPageID"></span>
+					</div>
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Account Name : </label>
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup.OrderForms.OrderForm.ExtendedProperties.AccountName"></span>
+					</div>
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Source System : </label>
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup.CommerceContext.SourceApplicationName"></span>
+					</div>
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">EQuote ID : </label>
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup.QuoteNumber>0?formData.OrderGroup.QuoteNumber:null"></span>
+					</div>
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">TAC Number : </label>
+						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+					</div>
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Assisting Sales Rep : </label>
+						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+						<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control">
+					</div>
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Assisting Sales Rep Number : </label>
+						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-6 col-lg-6">
+				<div id="panel_content">	
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Subtotal : </label>
+						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+					</div>
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Shipping : </label>
+						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+					</div>
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Taxes and Fees Total : </label>
+						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+					</div>
+					<div class="row">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Total : </label>
+						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+					</div>
+				</div>
+			</div>
+		</accordion-group>
+		
+		{{init_form(formData.OrderGroup.OrderForms.OrderForm)}}
+		<accordion-group ng-repeat="unit in createArray(form.FulfillmentUnits.FulfillmentUnit)">
+			<accordion-heading>Fulfillment Unit #{{$index+1}}</accordion-heading>
+			<accordion close-others="true">
+				<accordion-group>
+					<accordion-heading>Pricing</accordion-heading>
+					<div class="container" id="table">
+						<div class="row" id="table_header">
+							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Subtotal</div>
+							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Shipping Total</div>
+							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Estimated Tax/Fee</div>
+							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Total</div>
+						</div>
+						<div id="table_content">
+							<div class="row">
+								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">0</div>
+								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">0</div>
+								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">0</div>
+								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">0</div>
+							</div>
+						</div>
+					</div>
+				</accordion-group>
+				<accordion-group>
+					<accordion-heading>Backend Order Information</accordion-heading>
+					<div class="container" id="table">
+						<div class="row" id="table_header" ng-repeat="response in createArray(unit.BackendResponses.BackendResponse)">
+							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Order Number</div>
+							<div class="col-sm-2 col-md-2 col-lg-2 col-xs-2">Shipping</div>
+							<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">Tax</div>
+							<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">SEF</div>
+							<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">Total</div>
+							<div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">Est. Delivery Date</div>
+							<!--div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">Est. Shipping Date</div-->
+						</div>
+						<div id="table_content">
+							<div class="row" ng-repeat="order in createArray(response.BackendOrders.BackendOrder)">
+								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind="order.OrderNum"></div>
+								<div class="col-sm-2 col-md-2 col-lg-2 col-xs-2" ng-bind="order.ShippingChgTranAmount"></div>
+								<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1" ng-bind="order.SalesTaxTranAmt"></div>
+								<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1" ng-bind="order.TotalFeeTranAmt"></div>
+								<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1" ng-bind="order.TotalTranAmt"></div>
+								<div class="col-sm-4 col-md-4 col-lg-4 col-xs-4" ng-bind="order.EstimatedDeliveryDate"></div>
+							</div>
+						</div>
+					</div>
+				</accordion-group>
+				<accordion-group>
+					{{init_contact(form.BillingContact)}}
+					<accordion-heading>Billing Contact</accordion-heading>
+					<div id="panel_content">
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Company Name : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.CompanyName"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Name: </label>
+							<span class="col-sm-6 col-md-6 col-lg-6">{{contact.Name.First}} {{contact.Name.Last}}</span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Email Address : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.EmailAddress.Email"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 1 : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line1"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 2 : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line2"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 3 : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line3"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 4 : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line4"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">City : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.City"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Region : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Region"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Postal Code : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.PostalCode"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Country : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Country"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Number : </label>
+							<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact."></span-->
+						</div>
+						
+					</div>
+				</accordion-group>
+				<accordion-group>
+				{{init_contact(form.ShippingInformation.ShippingContact)}}
+					<accordion-heading>Shipping Contact</accordion-heading>
+					<div id="panel_content">
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Company Name : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.CompanyName"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Name: </label>
+							<span class="col-sm-6 col-md-6 col-lg-6">{{contact.Name.First}} {{contact.Name.Last}}</span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Email Address : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.EmailAddress.Email"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 1 : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line1"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 2 : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line2"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 3 : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line3"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 4 : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line4"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">City : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.City"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Region : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Region"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Postal Code : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.PostalCode"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Country : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Country"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Number : </label>
+							<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact."></span-->
+						</div>
+						
+					</div>
+				
+				</accordion-group>
+				<accordion-group ng-repeat="itemUnit in createArray(unit.FulfillmentItemInformation.FulfillmentItemInformation)" ng-init="item=getItem(itemUnit.ItemId)">
+					<accordion-heading>Item Detail #{{$index+1}}</accordion-heading>
+					<div id="panel_content">
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Item Description : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.Description"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Item Title : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.ExternalName"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Item Family : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.FamilyName"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Base : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.Description"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Catalog Number : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.CatalogId"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Catalog System : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.CatalogSystemURI"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Customer Set ID : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.CustomerSet"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Chassis ID : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.ConfigDetails.ChassisId"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Order Code : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.OrderCode"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">TAA Compliance : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.TaaComplianceStatus.TaaCompliant==null?'Not Applicable':item.TaaComplianceStatus.TaaCompliant"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">GSA Compliance : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.TaaComplianceStatus.GsaCompliant"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Replacement Part : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.TaaComplianceStatus.ReplacementPart"></span>
+						</div>
+						<div class="row" ng-hide="isnull(item.lease)">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label"> Lease Detail : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.lease.LeaseDetail"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Key Code : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.AdvertisementCode"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">SI Number : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.ConfigDetails.SINumber"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label"> CFI Comments: </label>
+							<div class="col-sm-6 col-md-6 col-lg-6">
+							<span ng-repeat="comment in createArray(item.ConfigDetails.CfiComments)"><p class="form-control-static"><span ng-bind="comment.Label"></span> <span ng-bind="comment.Value"></span></p></span>
+							</div>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Complex Config ID : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="getFulfillmentUnit(item.Id).ComplexConfigId"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Is Fast Track : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.FastTrack"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Is BTS : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.BuildToStock"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Is ATS : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="isAts(item)"></span>
+						</div>
+						<div class="row" ng-show="isAts(item)">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">ATS Reservation ID : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.stockReservationId"></span>
+						</div>
+						<div class="row" ng-hide="isnull(item.MoBro)">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">MOBRO Activation ID : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.MoBro.ActivationId"></span>
+						</div>
+						<div class="row" ng-hide="isnull(item.MoBro)">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">MOBRO Status : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.MoBro.Status"></span>
+						</div>
+					</div>
+					
+					<div class="container" id="table" ng-hide="isnull(item.PriceAdjustments.PriceAdjustment)">
+						<div class="row" id="table_header">
+							<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">Promotion Type</div>
+							<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">Coupon ID</div>
+							<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">Promotion ID</div>
+							<div class="col-sm-2 col-md-2 col-lg-2 col-xs-2">Promotion Description</div>
+							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Prootion Start Date</div>
+							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Promotion End Date</div>
+							<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">Total Impact</div>
+						</div>
+						<div id="table_content">
+							<div class="row" ng-repeat="promotion in createArray(item.PriceAdjustments.PriceAdjustment)">
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="promotion.CouponFlag"></div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="promotion.Id"></div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-bind="promotion.ShortDescription"></div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-bind="promotion.DateStart"></div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-bind="promotion.DateEnd"></div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="promotion.TotalImpact"></div>
+							</div>
+						</div>
+					</div>
+				
+					<div class="container" id="table" ng-hide="skuCheck(item)">
+						<div class="row" id="table_header">
+							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Module Number</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Legend Code</div>
+							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Price</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">SKUs</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Description</div>
+						</div>
+						<div id="table_content">
+							<div class="row" ng-repeat="module in createArray(item.ConfigDetails.Modules.Module)">
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Sequence"></div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-bind="module.DefaultOption"></div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Options.Option.OriginalPrice"></div>
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" >
+									<span ng-repeat="sku in createArray(module.Options.Option.Skus.Sku)"><span ng-bind="sku.Id"></span><span>&nbsp </span></span>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-bind="module.Options.Option.Description"></div>
+							</div>
+						</div>
+					</div>
+				</accordion-group>
+				<accordion-group>
+					<accordion-heading>Payment Information</accordion-heading>
+					content
+				</accordion-group>
+				<accordion-group>
+					{{init_shipInfo(form.ShippingInformation)}}
+					<accordion-heading>Shipment</accordion-heading>
+					<div id="panel_content">
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Shipping Option : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="isnull(shipInfo.ShippingChoice)?'Not Applicable':(shipInfo.ShippingChoice)"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Shipping Method : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="isnull(shipInfo.ShippingDescription)?'Not Applicable':(shipInfo.ShippingDescription)"></span>
+						</div>
+						<div class="row" ng-if="!(isnull(shipInfo.UsePremiumShipping)) && shipInfo.UsePremiumShipping">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Shipping Type : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="(shipInfo.UsePremiumShipping) ? 'ARB Fast Ship' : ''"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Carrier Name : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="isnull(shipInfo.DesignatedCarrierInfo.CarrierName)?'Not Applicable':(shipInfo.DesignatedCarrierInfo.CarrierName)"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Carrier Acct # : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="isnull(shipInfo.DesignatedCarrierInfo.CarrierAccount)?'Not Applicable':(shipInfo.DesignatedCarrierInfo.CarrierAccount)"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Method of Delivery : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="isnull(shipInfo.DesignatedCarrierInfo.MethodOfDelivery)?'Not Applicable':(shipInfo.DesignatedCarrierInfo.MethodOfDelivery)"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Additional Information : </label>
+							<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind=""></span-->
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Delivery above First Floor? : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="isnull(shipInfo.DeliveryAboveFirstFloor)?'Not Applicable':getTriStateText(shipInfo.DeliveryAboveFirstFloor)"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Has Delivery Loading Dock : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="isnull(shipInfo.hasDeliveryLoadingDock)?'Not Applicable':getTriStateText(shipInfo.hasDeliveryLoadingDock)"></span>
+						</div>
+						<div class="row">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Has Freight Elevator : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="isnull(shipInfo.hasFreightElevator)?'Not Applicable':getTriStateText(shipInfo.hasFreightElevator)"></span>
+						</div>
+					</div>
+				</accordion-group>
+			</accordion>
+        </accordion-group>
+	</accordion>
+	</div>
+	
+	<script src="js/jquery-1.10.2.js"></script>
+    <!--script src="js/jquery-ui-1.10.4.custom.js"></script-->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+	<script src="js/dynamic.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/style.js"></script>
+	<script src="js/ngProgress.js"></script>
+</body>
+</html>
