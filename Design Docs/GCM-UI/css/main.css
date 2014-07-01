@@ -16,15 +16,22 @@ label
 text-align: right;
 }
 
+
 .container
 {
  width: 100%;
+}
+
+.panel-default
+{
+box-shadow : 1px 1px 3px black;
 }
 
 .panel-default>.panel-heading
 {
  cursor: pointer;
  background-color: #DDFFFF;
+ height : 40px;
 }
 
 .panel-title
@@ -42,6 +49,57 @@ text-decoration: none;
  width: 91%;
  background-color : white;
  box-shadow : 1px 1px 5px black;
+}
+
+.panel-primary
+{
+border-color: #DDD;
+}
+
+.panel-primary > .panel-heading 
+{
+color: black;
+background-color: #DDFFFF;
+}
+
+.row
+{
+margin-top: 2px;
+margin-bottom: 2px;
+}
+
+.btn-primary,
+.btn-primary:active,
+.btn-primary:focus
+{
+color: black;
+background-color: #DDFFFF;
+box-shadow : 1px 1px 3px black;
+border-color: #DDD;
+}
+
+.btn-primary:hover
+{
+color: black;
+background-color: #DDFFFF;
+box-shadow : 1px 1px 3px black;
+}
+
+#ac_heading
+{
+padding : 12px;
+position : relative;
+top : -10px;
+}
+#s_button
+{
+text-align: center;
+}
+
+#sub_heading
+{
+text-align: center;
+font-size: 18px;
 }
 
 #loader_part

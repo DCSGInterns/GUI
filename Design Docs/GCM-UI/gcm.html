@@ -9,7 +9,6 @@
 	<!-- Bootstrap/jquery UI--> 
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/bootstrap.css" rel="stylesheet">
-	<!--link href="css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet"-->
 	<!-- Specific Styling -->
 	<link href="css/header_body_footer.css" rel="stylesheet"  type="text/css">
 	<link href="css/modal.css" rel="stylesheet"  type="text/css">
@@ -28,7 +27,7 @@
 	</div>
 	
 
-	<div>
+	<div ng-show="loading||waiting">
 		<input type="text" class="form-control" placeholder="DPID" ng-model="dpid"></input>
 		<button type="button" class="btn btn-default" ng-click="submit()">Submit</button>
 	</div>
@@ -37,8 +36,12 @@
 	<div id="loader_part" ng-show="loading && waiting">Loading<br/><img src="img/11.gif"/></div>
 	
 	<accordion close-others="true" ng-hide="loading">
-		<accordion-group>
-			<accordion-heading>Order Group Summary</accordion-heading>
+		<accordion-group is-open="open_summary">
+			<accordion-heading>
+				<div id="ac_heading">
+				Order Group Summary<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': open_summary, 'glyphicon-chevron-right': !open_summary}"></i>
+				</div>
+			</accordion-heading>
 			<div class="col-sm-6 col-md-6 col-lg-6">
 				<div id="panel_content">
 					<div class="row">
@@ -114,13 +117,24 @@
 				</div>
 			</div>
 		</accordion-group>
-		
+	</accordion>
+	<accordion close-others="true" ng-hide="loading">
 		{{init_form(formData.OrderGroup.OrderForms.OrderForm)}}
-		<accordion-group ng-repeat="unit in createArray(form.FulfillmentUnits.FulfillmentUnit)">
-			<accordion-heading>Fulfillment Unit #{{$index+1}}</accordion-heading>
-			<accordion close-others="true">
-				<accordion-group>
-					<accordion-heading>Pricing</accordion-heading>
+		<accordion-group is-open="open_funit" ng-repeat="unit in createArray(form.FulfillmentUnits.FulfillmentUnit)">
+			<accordion-heading>
+				<div id="ac_heading">
+					Fulfillment Unit #{{$index+1}}
+					<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': open_funit, 'glyphicon-chevron-right': !open_funit}"></i>
+				</div>
+			</accordion-heading>
+			<accordion close-others="false">
+				<accordion-group is-open="open_pricing">
+					<accordion-heading>
+						<div id="ac_heading">
+							Pricing
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': open_pricing, 'glyphicon-chevron-right': !open_pricing}"></i>
+						</div>
+					</accordion-heading>
 					<div class="container" id="table">
 						<div class="row" id="table_header">
 							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Subtotal</div>
@@ -138,8 +152,13 @@
 						</div>
 					</div>
 				</accordion-group>
-				<accordion-group>
-					<accordion-heading>Backend Order Information</accordion-heading>
+				<accordion-group is-open="open_binfo">
+					<accordion-heading>
+						<div id="ac_heading">
+							Backend Order Information
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': open_binfo, 'glyphicon-chevron-right': !open_binfo}"></i>
+						</div>
+					</accordion-heading>
 					<div class="container" id="table">
 						<div class="row" id="table_header" ng-repeat="response in createArray(unit.BackendResponses.BackendResponse)">
 							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Order Number</div>
@@ -162,119 +181,153 @@
 						</div>
 					</div>
 				</accordion-group>
-				<accordion-group>
-					{{init_contact(form.BillingContact)}}
-					<accordion-heading>Billing Contact</accordion-heading>
-					<div id="panel_content">
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Company Name : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.CompanyName"></span>
+				<accordion-group is-open="open_contact">
+					<accordion-heading>
+						<div id="ac_heading">
+							Contact
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': open_contact, 'glyphicon-chevron-right': !open_contact}"></i>
 						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Name: </label>
-							<span class="col-sm-6 col-md-6 col-lg-6">{{contact.Name.First}} {{contact.Name.Last}}</span>
+					</accordion-heading>
+					{{init_bcontact(form.BillingContact)}}
+					<div class="col-sm-6 col-md-6 col-lg-6">
+					<div class="panel panel-default" id="panel_content">
+						<div class="panel-heading">Billing</div>
+						<div class="panel-body">
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Company Name : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.CompanyName"></span>
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Name: </label>
+								<span class="col-sm-6 col-md-6 col-lg-6">{{bcontact.Name.First}} {{bcontact.Name.Last}}</span>
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Email Address : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.EmailAddress.Email" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.EmailAddress.Email">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 1 : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Address.Line1" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Address.Line1">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 2 : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Address.Line2" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Address.Line2">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 3 : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Address.Line3" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Address.Line3">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 4 : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Address.Line4" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Address.Line4">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">City : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Address.City" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Address.City">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Region : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Address.Region" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Address.Region">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Postal Code : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Address.PostalCode" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Address.PostalCode">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Country : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Country" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Country">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Number : </label>
+								<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact."></span-->
+							</div>
 						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Email Address : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.EmailAddress.Email"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 1 : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line1"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 2 : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line2"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 3 : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line3"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 4 : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line4"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">City : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.City"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Region : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Region"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Postal Code : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.PostalCode"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Country : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Country"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Number : </label>
-							<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact."></span-->
-						</div>
-						
 					</div>
-				</accordion-group>
-				<accordion-group>
-				{{init_contact(form.ShippingInformation.ShippingContact)}}
-					<accordion-heading>Shipping Contact</accordion-heading>
-					<div id="panel_content">
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Company Name : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.CompanyName"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Name: </label>
-							<span class="col-sm-6 col-md-6 col-lg-6">{{contact.Name.First}} {{contact.Name.Last}}</span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Email Address : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.EmailAddress.Email"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 1 : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line1"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 2 : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line2"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 3 : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line3"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 4 : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Line4"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">City : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.City"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Region : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.Region"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Postal Code : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Address.PostalCode"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Country : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact.Country"></span>
-						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Number : </label>
-							<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="contact."></span-->
-						</div>
-						
 					</div>
-				
+					{{init_scontact(form.ShippingInformation.ShippingContact)}}
+					<div class="col-sm-6 col-md-6 col-lg-6">
+					<div class="panel panel-default" id="panel_content">
+						<div class="panel-heading">Shipping</div>
+						<div class="panel-body">
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Company Name : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.CompanyName"></span>
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Name: </label>
+								<span class="col-sm-6 col-md-6 col-lg-6">{{scontact.Name.First}} {{scontact.Name.Last}}</span>
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Email Address : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.EmailAddress.Email" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.EmailAddress.Email">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 1 : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Address.Line1" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Address.Line1">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 2 : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Address.Line2" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Address.Line2">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 3 : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Address.Line3" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Address.Line3">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 4 : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Address.Line4" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Address.Line4">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">City : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Address.City" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Address.City">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Region : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Address.Region" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Address.Region">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Postal Code : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Address.PostalCode" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Address.PostalCode">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Country : </label>
+								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Country" ng-hide="iseditable"></span>
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Country">
+							</div>
+							<div class="row">
+								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Number : </label>
+								<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact."></span-->
+							</div>
+						</div>
+					</div>
+					</div>
+					&nbsp<br/>
+					<div id="s_button"><button type="button" class="btn btn-primary" ng-click="changeEditState()"><span ng-hide="iseditable">Edit</span><span ng-show="iseditable">Save</span></button></div>
 				</accordion-group>
-				<accordion-group ng-repeat="itemUnit in createArray(unit.FulfillmentItemInformation.FulfillmentItemInformation)" ng-init="item=getItem(itemUnit.ItemId)">
-					<accordion-heading>Item Detail #{{$index+1}}</accordion-heading>
+				<accordion-group is-open="open_item" ng-repeat="itemUnit in createArray(unit.FulfillmentItemInformation.FulfillmentItemInformation)" ng-init="item=getItem(itemUnit.ItemId)">
+					<accordion-heading>
+						<div id="ac_heading">
+							Item Detail #{{$index+1}}
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': open_item, 'glyphicon-chevron-right': !open_item}"></i>
+						</div>
+					</accordion-heading>
 					<div id="panel_content">
 						<div class="row">
 							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Item Description : </label>
@@ -416,8 +469,13 @@
 						</div>
 					</div>
 				</accordion-group>
-				<accordion-group>
-					<accordion-heading>Payment Information</accordion-heading>
+				<accordion-group is-open="open_payment">
+					<accordion-heading>
+						<div id="ac_heading">
+							Payment Information
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': open_payment, 'glyphicon-chevron-right': !open_payment}"></i>
+						</div>
+					</accordion-heading>
 					<div id="panel_content">
 						<div ng-repeat="payment in createArray(formData.OrderGroup.PaymentMethods.BasicPaymentMethod)">
 							<div class="row">
@@ -477,9 +535,14 @@
 						</div>
 					</div>
 				</accordion-group>
-				<accordion-group>
+				<accordion-group is-open="open_shipment">
 					{{init_shipInfo(form.ShippingInformation)}}
-					<accordion-heading>Shipment</accordion-heading>
+					<accordion-heading>
+						<div id="ac_heading">
+							Shipment
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': open_shipment, 'glyphicon-chevron-right': !open_shipment}"></i>
+						</div>
+					</accordion-heading>
 					<div id="panel_content">
 						<div class="row">
 							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Shipping Option : </label>
@@ -529,14 +592,11 @@
 	</div>
 	
 	<script src="js/jquery-1.10.2.js"></script>
-    <!--script src="js/jquery-ui-1.10.4.custom.js"></script-->
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
-	<script src="js/dynamic.js"></script>
 	<script src="js/controllers.js"></script>
 	<script src="js/app.js"></script>
-	<script src="js/style.js"></script>
 	<script src="js/ngProgress.js"></script>
 </body>
 </html>
