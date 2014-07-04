@@ -451,20 +451,40 @@
 					<div class="container" id="table" ng-hide="skuCheck(item)">
 						<div class="row" id="table_header">
 							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Module Number</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Legend Code</div>
+							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Legend Code</div>
 							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Price</div>
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">SKUs</div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">SKUs</div>
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Description</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Edit/Remove</div>
 						</div>
 						<div id="table_content">
-							<div class="row" ng-repeat="module in createArray(item.ConfigDetails.Modules.Module)">
-								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Sequence"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-bind="module.DefaultOption"></div>
-								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Options.Option.OriginalPrice"></div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" >
+							<div class="row" ng-repeat="module in createArray(item.ConfigDetails.Modules.Module)" ng-init = "row_editable = false">
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Sequence" ng-hide="row_editable"></div>
+								<input class="col-sm-1 col-md-1 col-lg-1 col-xs-1" type="text" class="form-control" ng-show="row_editable" ng-model="module.Sequence">
+								
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.DefaultOption" ng-hide="row_editable"></div>
+								<input class="col-sm-1 col-md-1 col-lg-1 col-xs-1" type="text" class="form-control" ng-show="row_editable" ng-model="module.DefaultOption">
+								
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Options.Option.OriginalPrice" ng-hide="row_editable"></div>
+								<input class="col-sm-1 col-md-1 col-lg-1 col-xs-1" type="text" class="form-control" ng-show="row_editable" ng-model="module.Options.Option.OriginalPrice">
+								
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" >
 									<span ng-repeat="sku in createArray(module.Options.Option.Skus.Sku)"><span ng-bind="sku.Id"></span><span>&nbsp </span></span>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-bind="module.Options.Option.Description"></div>
+								
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-bind="module.Options.Option.Description" ng-hide="row_editable"></div>
+								<input class="col-sm-4 col-md-4 col-lg-4 col-xs-4" type="text" class="form-control" ng-show="row_editable" ng-model="module.Options.Option.Description">
+								
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+									<button type="button" class="btn btn-primary" ng-click="row_editable = row_editable==true? false : true">
+									<span ng-hide="row_editable"><span class="glyphicon glyphicon-pencil"></span></span>
+									<span ng-show="row_editable"><span class="glyphicon glyphicon-save"></span></span>
+									</button>
+									<button type="button" class="btn btn-primary" ng-click="deleteModule(item,module.Sequence)">
+									<span><span class="glyphicon glyphicon-remove"></span></span>
+									</button>
+									
+								</div>
 							</div>
 						</div>
 					</div>
