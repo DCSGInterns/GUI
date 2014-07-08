@@ -46,48 +46,58 @@
 				<div id="panel_content">
 					<div class="row">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Date Entered : </label>
-						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup.DateCreated"></span>
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.DateCreated"></span>
 					</div>
 					<div class="row">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Customer Set ID : </label>
-						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup.CommerceContext.CustomerSet"></span>
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.CommerceContext.CustomerSet"></span>
 					</div>
 					<div class="row">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Online Company Number : </label>
-						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup.CommerceContext.CompanyNumber"></span>
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.CommerceContext.CompanyNumber"></span>
 					</div>
 					<div class="row">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Online Customer Link Number : </label>
-						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.CommerceContext.BackendCustomerLinkNumber"></span>
 					</div>
-					<div class="row">
+					{{getStoreOwner(formData.CommerceContext.AccountTeam)}}
+					<div class="row" ng-hide="isnull(storeOwner)||isNameEmpty(storeOwner)">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Store Owner : </label>
-						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+						<span class="col-sm-6 col-md-6 col-lg-6">
+							{{storeOwner.Name.First}} {{storeOwner.Name.MI}}. {{storeOwner.Name.Last}}
+						</span>
 					</div>
-					<div class="row">
+					<div class="row" ng-hide="isnull(formData.CommerceContext.SimpleProfile)">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Premier ID : </label>
-						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup.CommerceContext.SimpleProfile.PremierPageID"></span>
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.CommerceContext.SimpleProfile.PremierPageID"></span>
 					</div>
-					<div class="row">
+					{{getAccountName()}}
+					<div class="row" ng-hide="isnull(accountName)">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Account Name : </label>
-						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup.OrderForms.OrderForm.ExtendedProperties.AccountName"></span>
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="accountName"></span>
 					</div>
 					<div class="row">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Source System : </label>
-						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup.CommerceContext.SourceApplicationName"></span>
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.CommerceContext.SourceApplicationName"></span>
 					</div>
-					<div class="row">
+					<div class="row" ng-show="formData.QuoteNumber>0">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">EQuote ID : </label>
-						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup.QuoteNumber>0?formData.OrderGroup.QuoteNumber:null"></span>
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.QuoteNumber"></span>
 					</div>
-					<div class="row">
+					<div class="row" ng-show="formData.CommerceContext.FraudType == 'TAC'">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">TAC Number : </label>
-						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+						{{getTACNumber(formData.CommerceContext.FraudNumber)}}
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="tacNumber"></span>
 					</div>
+					
+					<div class="row" ng-show="formData.OnlineOGKeycode.trim() != '' ">
+						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Order Group Keycode : </label>
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OnlineOGKeycode"></span>
+					</div>
+					
 					<div class="row">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Assisting Sales Rep : </label>
 						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
-						<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control">
 					</div>
 					<div class="row">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Assisting Sales Rep Number : </label>
@@ -100,27 +110,27 @@
 				<div id="panel_content">	
 					<div class="row">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Subtotal : </label>
-						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OGOperationResult.AdjustedSubTotal"></span>
 					</div>
 					<div class="row">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Shipping : </label>
-						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OGOperationResult.AdjustedShippingTotal"></span>
 					</div>
 					<div class="row">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Taxes and Fees Total : </label>
-						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OGOperationResult."></span-->
 					</div>
 					<div class="row">
 						<label class="col-sm-6 col-md-6 col-lg-6 control-label">Total : </label>
-						<!--span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OrderGroup."></span-->
+						<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="formData.OGOperationResult.ApproximateTotalTotal"></span>
 					</div>
 				</div>
 			</div>
 		</accordion-group>
 	</accordion>
 	<accordion close-others="true" ng-hide="loading">
-		{{init_form(formData.OrderGroup.OrderForms.OrderForm)}}
-		<accordion-group is-open="open_funit" ng-repeat="unit in createArray(form.FulfillmentUnits.FulfillmentUnit)">
+		{{init_form(formData.OrderForms.$values[0])}}
+		<accordion-group is-open="open_funit" ng-repeat="unit in form.FulfillmentUnits.$values">
 			<accordion-heading>
 				<div id="ac_heading">
 					Fulfillment Unit #{{$index+1}}
@@ -144,10 +154,10 @@
 						</div>
 						<div id="table_content">
 							<div class="row">
-								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">0</div>
-								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">0</div>
-								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">0</div>
-								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">0</div>
+								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind=""></div>
+								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind=""></div>
+								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind=""></div>
+								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind=""></div>
 							</div>
 						</div>
 					</div>
@@ -159,8 +169,8 @@
 							<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': open_binfo, 'glyphicon-chevron-right': !open_binfo}"></i>
 						</div>
 					</accordion-heading>
-					<div class="container" id="table">
-						<div class="row" id="table_header" ng-repeat="response in createArray(unit.BackendResponses.BackendResponse)">
+					<div class="container" id="table" ng-repeat="response in unit.BackendResponses.$values">
+						<div class="row" id="table_header">
 							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Order Number</div>
 							<div class="col-sm-2 col-md-2 col-lg-2 col-xs-2">Shipping</div>
 							<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">Tax</div>
@@ -170,7 +180,7 @@
 							<!--div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">Est. Shipping Date</div-->
 						</div>
 						<div id="table_content">
-							<div class="row" ng-repeat="order in createArray(response.BackendOrders.BackendOrder)">
+							<div class="row" ng-repeat="order in response.BackendOrders.$values">
 								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind="order.OrderNum"></div>
 								<div class="col-sm-2 col-md-2 col-lg-2 col-xs-2" ng-bind="order.ShippingChgTranAmount"></div>
 								<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1" ng-bind="order.SalesTaxTranAmt"></div>
@@ -320,8 +330,10 @@
 					</div>
 					&nbsp<br/>
 					<div id="s_button"><button type="button" class="btn btn-primary" ng-click="changeEditState()"><span ng-hide="iseditable">Edit</span><span ng-show="iseditable">Save</span></button></div>
+					{{result}}
 				</accordion-group>
-				<accordion-group is-open="open_item" ng-repeat="itemUnit in createArray(unit.FulfillmentItemInformation.FulfillmentItemInformation)" ng-init="item=getItem(itemUnit.ItemId)">
+				<accordion-group is-open="open_item" ng-repeat="item in form.Items.$values">
+				<!--ng-repeat="itemUnit in unit.FulfillmentItemInformation.$values" ng-init="item=getItem(itemUnit.ItemId)"-->
 					<accordion-heading>
 						<div id="ac_heading">
 							Item Detail #{{$index+1}}
@@ -335,7 +347,7 @@
 						</div>
 						<div class="row">
 							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Item Title : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.ExternalName"></span>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="isnull(item.ExternalName) || isStringEmpty(item.ExternalName) ? item.Title : item.ExternalName"></span>
 						</div>
 						<div class="row">
 							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Item Family : </label>
@@ -365,15 +377,19 @@
 							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Order Code : </label>
 							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.OrderCode"></span>
 						</div>
-						<div class="row">
-							<label class="col-sm-6 col-md-6 col-lg-6 control-label">TAA Compliance : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.TaaComplianceStatus.TaaCompliant==null?'Not Applicable':item.TaaComplianceStatus.TaaCompliant"></span>
+						<div class="row" ng-hide="item.ContractCode == '' || isnull(item.ContractCode)">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Contract Code : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.ContractCode"></span>
 						</div>
-						<div class="row">
+						<div class="row" ng-hide="isnull(item.TaaComplianceStatus)">
+							<label class="col-sm-6 col-md-6 col-lg-6 control-label">TAA Compliance : </label>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.TaaComplianceStatus.TaaCompliant"></span>
+						</div>
+						<div class="row" ng-hide="isnull(item.TaaComplianceStatus)">
 							<label class="col-sm-6 col-md-6 col-lg-6 control-label">GSA Compliance : </label>
 							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.TaaComplianceStatus.GsaCompliant"></span>
 						</div>
-						<div class="row">
+						<div class="row" ng-hide="isnull(item.TaaComplianceStatus)">
 							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Replacement Part : </label>
 							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.TaaComplianceStatus.ReplacementPart"></span>
 						</div>
@@ -389,15 +405,15 @@
 							<label class="col-sm-6 col-md-6 col-lg-6 control-label">SI Number : </label>
 							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.ConfigDetails.SINumber"></span>
 						</div>
-						<div class="row">
+						<div class="row" ng-hide="isnull(item.ConfigDetails.CfiComments)">
 							<label class="col-sm-6 col-md-6 col-lg-6 control-label"> CFI Comments: </label>
 							<div class="col-sm-6 col-md-6 col-lg-6">
-							<span ng-repeat="comment in createArray(item.ConfigDetails.CfiComments)"><p class="form-control-static"><span ng-bind="comment.Label"></span> <span ng-bind="comment.Value"></span></p></span>
+							<span ng-repeat="comment in item.ConfigDetails.CfiComments"><p class="form-control-static"><span ng-bind="comment.Label"></span> <span ng-bind="comment.Value"></span></p></span>
 							</div>
 						</div>
 						<div class="row">
 							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Complex Config ID : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="getFulfillmentUnit(item.Id).ComplexConfigId"></span>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="unit.ComplexConfigId"></span>
 						</div>
 						<div class="row">
 							<label class="col-sm-6 col-md-6 col-lg-6 control-label">Is Fast Track : </label>
@@ -413,11 +429,11 @@
 						</div>
 						<div class="row" ng-show="isAts(item)">
 							<label class="col-sm-6 col-md-6 col-lg-6 control-label">ATS Reservation ID : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.stockReservationId"></span>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.StockReservationId"></span>
 						</div>
 						<div class="row" ng-hide="isnull(item.MoBro)">
 							<label class="col-sm-6 col-md-6 col-lg-6 control-label">MOBRO Activation ID : </label>
-							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.MoBro.ActivationId"></span>
+							<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="item.MoBro.ActivationID"></span>
 						</div>
 						<div class="row" ng-hide="isnull(item.MoBro)">
 							<label class="col-sm-6 col-md-6 col-lg-6 control-label">MOBRO Status : </label>
@@ -425,30 +441,30 @@
 						</div>
 					</div>
 					
-					<div class="container" id="table" ng-hide="isnull(item.PriceAdjustments.PriceAdjustment)">
+					<div class="container" id="table" ng-hide="isnull(item.PriceAdjustments.$values)">
 						<div class="row" id="table_header">
 							<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">Promotion Type</div>
 							<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">Coupon ID</div>
 							<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">Promotion ID</div>
 							<div class="col-sm-2 col-md-2 col-lg-2 col-xs-2">Promotion Description</div>
-							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Prootion Start Date</div>
+							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Promotion Start Date</div>
 							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Promotion End Date</div>
 							<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">Total Impact</div>
 						</div>
 						<div id="table_content">
-							<div class="row" ng-repeat="promotion in createArray(item.PriceAdjustments.PriceAdjustment)">
+							<div class="row" ng-repeat="promotion in item.PriceAdjustments.$values">
 								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="promotion.CouponFlag"></div>
 								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
 								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="promotion.Id"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-bind="promotion.ShortDescription"></div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-bind="isnull(promotion.Description)||isStringEmpty(promotion.Description) ? promotion.ShortDescription : promotion.Description"></div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-bind="promotion.DateStart"></div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-bind="promotion.DateEnd"></div>
-								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="promotion.TotalImpact"></div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="getTotalImpact(promotion)"></div>
 							</div>
 						</div>
 					</div>
 				
-					<div class="container" id="table" ng-hide="skuCheck(item)">
+					<div class="container" id="table" ng-hide="skuCheck(item,unit)">
 						<div class="row" id="table_header">
 							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Module Number</div>
 							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Legend Code</div>
@@ -458,22 +474,30 @@
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Edit/Remove</div>
 						</div>
 						<div id="table_content">
-							<div class="row" ng-repeat="module in createArray(item.ConfigDetails.Modules.Module)" ng-init = "row_editable = false">
+							<div class="row" ng-repeat="module in item.ConfigDetails.Modules.$values" ng-init = "row_editable = false">
 								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Sequence" ng-hide="row_editable"></div>
 								<input class="col-sm-1 col-md-1 col-lg-1 col-xs-1" type="text" class="form-control" ng-show="row_editable" ng-model="module.Sequence">
 								
 								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.DefaultOption" ng-hide="row_editable"></div>
 								<input class="col-sm-1 col-md-1 col-lg-1 col-xs-1" type="text" class="form-control" ng-show="row_editable" ng-model="module.DefaultOption">
 								
-								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Options.Option.OriginalPrice" ng-hide="row_editable"></div>
-								<input class="col-sm-1 col-md-1 col-lg-1 col-xs-1" type="text" class="form-control" ng-show="row_editable" ng-model="module.Options.Option.OriginalPrice">
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Options.$values[0].OriginalPrice" ng-hide="row_editable"></div>
+								<input class="col-sm-1 col-md-1 col-lg-1 col-xs-1" type="text" class="form-control" ng-show="row_editable" ng-model="module.Options.$values[0].OriginalPrice">
 								
-								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" >
-									<span ng-repeat="sku in createArray(module.Options.Option.Skus.Sku)"><span ng-bind="sku.Id"></span><span>&nbsp </span></span>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+									<span ng-repeat="option in module.Options.$values">
+										<span ng-repeat="sku in option.Skus.$values">
+											<span ng-bind="sku.Id"></span><span>&nbsp </span>
+										</span>
+									</span>
 								</div>
 								
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-bind="module.Options.Option.Description" ng-hide="row_editable"></div>
-								<input class="col-sm-4 col-md-4 col-lg-4 col-xs-4" type="text" class="form-control" ng-show="row_editable" ng-model="module.Options.Option.Description">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-hide="row_editable">
+									<span ng-repeat="option in module.Options.$values">
+										<span ng-bind="option.Description"></span><span>&nbsp </span>
+									</span>
+								</div>
+								<input class="col-sm-4 col-md-4 col-lg-4 col-xs-4" type="text" class="form-control" ng-show="row_editable" ng-model="module.Options.$values[0].Description">
 								
 								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 									<button type="button" class="btn btn-primary" ng-click="row_editable = row_editable==true? false : true">
@@ -497,12 +521,12 @@
 						</div>
 					</accordion-heading>
 					<div id="panel_content">
-						<div ng-repeat="payment in createArray(formData.OrderGroup.PaymentMethods.BasicPaymentMethod)">
+						<div ng-repeat="payment in formData.PaymentMethods.$values">
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Payment Type : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="isnull(payment.PaymentDescription)?'Not Provided':(payment.PaymentDescription)"></span>
 							</div>
-							<div class="row" ng-repeat="impact in createArray(unit.PaymentImpacts)" ng-if="impact.PaymentMethodImpact.PaymentMethodId==payment.ID">
+							<div class="row" ng-repeat="impact in unit.PaymentImpacts" ng-if="impact.PaymentMethodImpact.PaymentMethodId==payment.ID">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Impact Amount : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="impact.PaymentMethodImpact.Impact"></span>
 							</div>
