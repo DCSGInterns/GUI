@@ -27,16 +27,17 @@
 	</div>
 	
 
-	<div ng-show="loading||waiting">
+	<div ng-show="waiting">
 		<input type="text" class="form-control" placeholder="DPID" ng-model="dpid"></input>
 		<button type="button" class="btn btn-default" ng-click="submit()">Submit</button>
 	</div>
 
 	<div class="container">
-	<div id="loader_part" ng-show="loading && waiting">Loading<br/><img src="img/11.gif"/></div>
+	<div id="loader_part" ng-show="loading">Loading<br/><img src="img/11.gif"/></div>
+	<div id="loader_part" ng-show="saving">Saving<br/><img src="img/11.gif"/></div>
 	
-	<accordion close-others="true" ng-hide="loading">
-		<accordion-group is-open="open_summary">
+	<accordion close-others="true" ng-hide="waiting || loading || saving">
+		<accordion-group is-open="open_summary" ng-init="open_summary=true">
 			<accordion-heading>
 				<div id="ac_heading">
 				Order Group Summary<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': open_summary, 'glyphicon-chevron-right': !open_summary}"></i>
@@ -128,7 +129,7 @@
 			</div>
 		</accordion-group>
 	</accordion>
-	<accordion close-others="true" ng-hide="loading">
+	<accordion close-others="true" ng-hide="waiting || loading || saving">
 		{{init_form(formData.OrderForms.$values[0])}}
 		<accordion-group is-open="open_funit" ng-repeat="unit in form.FulfillmentUnits.$values">
 			<accordion-heading>
@@ -330,7 +331,7 @@
 					</div>
 					&nbsp<br/>
 					<div id="s_button"><button type="button" class="btn btn-primary" ng-click="changeEditState()"><span ng-hide="iseditable">Edit</span><span ng-show="iseditable">Save</span></button></div>
-					{{result}}
+					
 				</accordion-group>
 				<accordion-group is-open="open_item" ng-repeat="item in form.Items.$values">
 				<!--ng-repeat="itemUnit in unit.FulfillmentItemInformation.$values" ng-init="item=getItem(itemUnit.ItemId)"-->

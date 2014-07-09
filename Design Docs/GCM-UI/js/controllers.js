@@ -6,8 +6,9 @@ var gcmControllerModule =  angular.module('gcmApp.controllers', ['ui.bootstrap',
 
 gcmControllerModule.controller('gcmCtrl', function ($scope,$http,ngProgress) {
 $scope.dpid;
-$scope.loading="true";
-$scope.waiting="false";
+$scope.loading=false;
+$scope.waiting=true;
+$scope.saving=false;
 $scope.iseditable="false";
 $scope.formData;
 $scope.form;
@@ -13145,13 +13146,13 @@ $scope.result="not done";
 }
 */
 $scope.submit=function(){
-  $scope.waiting=true;
+  $scope.waiting=false;
   $scope.loading=true;
   ngProgress.start();
   $http.get('http://wn7x64-1gmw5z1/DellAPI/api/Home/GetOrderGroup/'+$scope.dpid).success(function(data) {
     $scope.formData = data;
+  //$scope.loading=false;
   $scope.loading=false;
-  $scope.waiting=false;
   ngProgress.complete();
   });  
 }
@@ -13159,26 +13160,32 @@ $scope.submit=function(){
 $scope.changeEditState=function(){
 if($scope.iseditable==true)
 {
-/*$http.post('http://WN7X64-1GMW5Z1/DellAPI/api/Home/SaveOrderGroup/', formData).success(function(){
-$scope.result="success";
-$scope.iseditable=false;
-});*/
-/*$http({
+//$scope.loading = true;
+$scope.saving = true;
+var dat = JSON.stringify($scope.formData);
+$http({
             url: 'http://WN7X64-1GMW5Z1/DellAPI/api/Home/SaveOrderGroup/',
             method: "POST",
-            data: formData,
-            headers: {'Content-Type': 'application/json'}
+            data: dat,
+            headers: {'Content-Type': 'text/plain'}
         }).success(function (data, status, headers, config) {
-                $scope.persons = data; // assign  $scope.persons here as promise is resolved here
-				$scope.result="success";
+				//$scope.loading = false;
+				$scope.saving = false;
 				$scope.iseditable=false;
+				$scope.loading=true;
+				  ngProgress.start();
+				  $http.get('http://wn7x64-1gmw5z1/DellAPI/api/Home/GetOrderGroup/'+$scope.dpid).success(function(data) {
+					$scope.formData = data;
+				  //$scope.loading=false;
+				  $scope.loading=false;
+				  ngProgress.complete();});
+				
             }).error(function (data, status, headers, config) {
-                $scope.status = status;
-				$scope.result="fail";
+				//$scope.loading=false;
+				$scope.saving=false;
 				$scope.iseditable=false;
-            });*/
-
-$scope.iseditable=false;
+            });
+			
 
 }
 else
