@@ -6,6 +6,8 @@ var gcmControllerModule =  angular.module('gcmApp.controllers', ['ui.bootstrap',
 
 gcmControllerModule.controller('gcmCtrl', function ($scope,$http,ngProgress) {
 $scope.dpid;
+$scope.test="sdsa";
+$scope.updateList=[];
 $scope.loading=false;
 $scope.waiting=true;
 $scope.saving=false;
@@ -18,6 +20,7 @@ $scope.shipInfo;
 $scope.storeOwner;
 $scope.accountName;
 $scope.tacNumber;
+$scope.copy;
 $scope.result="not done";
 /*$scope.formData= {
   "?xml": {
@@ -13157,6 +13160,27 @@ $scope.submit=function(){
   });  
 }
 
+/*
+$scope.editField = function(new_val,id){
+var update = {
+				'id': id,
+				'old_val': $scope.copy,
+				'new_val': new_val,
+				'action': 'E' 
+			 }
+			 
+$scope.updateList.push(update);
+}
+
+$scope.createCopy=function(old_val,id,field){
+$scope.copy = old_val;
+$(field).focusout(function(){
+$scope.test="hai";
+$scope.editField(field,id);
+});
+
+}
+*/
 $scope.changeEditState=function(){
 if($scope.iseditable==true)
 {
@@ -13308,7 +13332,10 @@ $scope.iseditable=true;
   for(var i=0,len=x.length;i<len;i++)
 	{
 		if(x[i].Sequence==modNumber)
-		{x.splice(i,1);}
+		{
+		x.splice(i,1);
+		break;
+		}
 	}
  
  }

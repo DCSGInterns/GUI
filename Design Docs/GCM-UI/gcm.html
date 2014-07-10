@@ -333,7 +333,7 @@
 					<div id="s_button"><button type="button" class="btn btn-primary" ng-click="changeEditState()"><span ng-hide="iseditable">Edit</span><span ng-show="iseditable">Save</span></button></div>
 					
 				</accordion-group>
-				<accordion-group is-open="open_item" ng-repeat="item in form.Items.$values">
+				<accordion-group is-open="open_item" ng-repeat="item in form.Items.$values" ng-init="item_no=$index">
 				<!--ng-repeat="itemUnit in unit.FulfillmentItemInformation.$values" ng-init="item=getItem(itemUnit.ItemId)"-->
 					<accordion-heading>
 						<div id="ac_heading">
@@ -482,8 +482,8 @@
 								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.DefaultOption" ng-hide="row_editable"></div>
 								<input class="col-sm-1 col-md-1 col-lg-1 col-xs-1" type="text" class="form-control" ng-show="row_editable" ng-model="module.DefaultOption">
 								
-								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Options.$values[0].OriginalPrice" ng-hide="row_editable"></div>
-								<input class="col-sm-1 col-md-1 col-lg-1 col-xs-1" type="text" class="form-control" ng-show="row_editable" ng-model="module.Options.$values[0].OriginalPrice">
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Options.$values[0].OriginalPrice" ></div>
+								<!--input class="col-sm-1 col-md-1 col-lg-1 col-xs-1" type="text" class="form-control" ng-show="row_editable" ng-model="module.Options.$values[0].OriginalPrice"-->
 								
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 									<span ng-repeat="option in module.Options.$values">
@@ -493,15 +493,15 @@
 									</span>
 								</div>
 								
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-hide="row_editable">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 									<span ng-repeat="option in module.Options.$values">
 										<span ng-bind="option.Description"></span><span>&nbsp </span>
 									</span>
 								</div>
-								<input class="col-sm-4 col-md-4 col-lg-4 col-xs-4" type="text" class="form-control" ng-show="row_editable" ng-model="module.Options.$values[0].Description">
+								<!--input class="col-sm-4 col-md-4 col-lg-4 col-xs-4" type="text" class="form-control" ng-show="row_editable" ng-model="module.Options.$values[0].Description"-->
 								
 								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-									<button type="button" class="btn btn-primary" ng-click="row_editable = row_editable==true? false : true">
+									<button type="button" class="btn btn-primary" ng-click="row_editable = row_editable==true? false : true;">
 									<span ng-hide="row_editable"><span class="glyphicon glyphicon-pencil"></span></span>
 									<span ng-show="row_editable"><span class="glyphicon glyphicon-save"></span></span>
 									</button>
@@ -513,6 +513,10 @@
 							</div>
 						</div>
 					</div>
+				
+				<div ng-repeat="x in updateList">
+				{{x.id}} {{x.old_val}} {{x.new_val}} {{x.action}} </br>
+				</div>
 				</accordion-group>
 				<accordion-group is-open="open_payment">
 					<accordion-heading>
