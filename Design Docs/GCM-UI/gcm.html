@@ -11,7 +11,6 @@
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<!-- Specific Styling -->
 	<link href="css/header_body_footer.css" rel="stylesheet"  type="text/css">
-	<link href="css/modal.css" rel="stylesheet"  type="text/css">
 	<link href="css/main.css" rel="stylesheet"  type="text/css">
 	<link href="css/ngProgress.css" rel="stylesheet"  type="text/css">
 	<!-- Angular -->
@@ -19,6 +18,7 @@
 	
 </head>
 <body ng-controller="gcmCtrl">
+	
 	<div id="header">
 		<div id="header_content">
 		<img src="img/Dell_logo.png">
@@ -27,7 +27,7 @@
 	</div>
 	
 
-	<div ng-show="waiting">
+	<div class="row" id="dpid_input" ng-show="waiting">
 		<input type="text" class="form-control" placeholder="DPID" ng-model="dpid"></input>
 		<button type="button" class="btn btn-default" ng-click="submit()">Submit</button>
 	</div>
@@ -43,6 +43,35 @@
 				Order Group Summary<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': open_summary, 'glyphicon-chevron-right': !open_summary}"></i>
 				</div>
 			</accordion-heading>
+			
+			<div id="og_status" class="row">
+			<label>Order Group Status: </label>
+			<span ng-bind="formData.DispositionCode"></span>
+			</div>
+			
+			<div class="container" id="table" ng-hide="isnull(formData.OrderForms[0].FulfillmentUnits)">
+				<div class="row" id="table_header">
+					<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Fulfillment Unit</div>
+					<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Online Customer Number</div>
+					<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Online Quote Number</div>
+					<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Status</div>
+				</div>
+				<div id="table_content" ng-repeat="unit in formData.OrderForms[0].FulfillmentUnits">
+					<div class="row">
+						<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Fulfillment Unit #{{$index+1}}</div>
+						<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind="formData.OrderForms[0].BillingContact.BackendCustomerNumber>0?formData.OrderForms[0].BillingContact.BackendCustomerNumber:'---'"></div>
+						<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3"></div>
+						<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind="unit.DispositionCode"></div>
+					</div>
+					<div class="row" ng-repeat="error in unit.BackendResponses[0].BackendErrors">
+						<label class="control-label">NAK Reason #{{$index+1}} : </label>
+						<span ng-bind="error.ErrorDesc"></span>
+					</div>
+				</div>
+			</div>
+			<br />
+			<br />
+			
 			<div class="col-sm-6 col-md-6 col-lg-6">
 				<div id="panel_content">
 					<div class="row">
@@ -130,8 +159,8 @@
 		</accordion-group>
 	</accordion>
 	<accordion close-others="true" ng-hide="waiting || loading || saving">
-		{{init_form(formData.OrderForms.$values[0])}}
-		<accordion-group is-open="open_funit" ng-repeat="unit in form.FulfillmentUnits.$values">
+		{{init_form(formData.OrderForms[0])}}
+		<accordion-group is-open="open_funit" ng-repeat="unit in form.FulfillmentUnits">
 			<accordion-heading>
 				<div id="ac_heading">
 					Fulfillment Unit #{{$index+1}}
@@ -139,7 +168,7 @@
 				</div>
 			</accordion-heading>
 			<accordion close-others="false">
-				<accordion-group is-open="open_pricing">
+				<accordion-group is-open="open_pricing" ng-init="open_pricing=true">
 					<accordion-heading>
 						<div id="ac_heading">
 							Pricing
@@ -155,22 +184,22 @@
 						</div>
 						<div id="table_content">
 							<div class="row">
+								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind="unit.FulFillmentOperationResult.AdjustedSubTotal"></div>
+								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind="unit.FulFillmentOperationResult.AdjustedShippingTotal"></div>
 								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind=""></div>
-								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind=""></div>
-								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind=""></div>
-								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind=""></div>
+								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind="unit.FulFillmentOperationResult.AdjustedTotalTotal"></div>
 							</div>
 						</div>
 					</div>
 				</accordion-group>
-				<accordion-group is-open="open_binfo">
+				<accordion-group is-open="open_binfo" ng-init="open_binfo=true">
 					<accordion-heading>
 						<div id="ac_heading">
 							Backend Order Information
 							<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': open_binfo, 'glyphicon-chevron-right': !open_binfo}"></i>
 						</div>
 					</accordion-heading>
-					<div class="container" id="table" ng-repeat="response in unit.BackendResponses.$values">
+					<div class="container" id="table" ng-repeat="response in unit.BackendResponses">
 						<div class="row" id="table_header">
 							<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">Order Number</div>
 							<div class="col-sm-2 col-md-2 col-lg-2 col-xs-2">Shipping</div>
@@ -181,7 +210,7 @@
 							<!--div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">Est. Shipping Date</div-->
 						</div>
 						<div id="table_content">
-							<div class="row" ng-repeat="order in response.BackendOrders.$values">
+							<div class="row" ng-repeat="order in response.BackendOrders">
 								<div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" ng-bind="order.OrderNum"></div>
 								<div class="col-sm-2 col-md-2 col-lg-2 col-xs-2" ng-bind="order.ShippingChgTranAmount"></div>
 								<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1" ng-bind="order.SalesTaxTranAmt"></div>
@@ -192,7 +221,7 @@
 						</div>
 					</div>
 				</accordion-group>
-				<accordion-group is-open="open_contact">
+				<accordion-group is-open="open_contact" ng-init="open_contact=true">
 					<accordion-heading>
 						<div id="ac_heading">
 							Contact
@@ -202,7 +231,7 @@
 					{{init_bcontact(form.BillingContact)}}
 					<div class="col-sm-6 col-md-6 col-lg-6">
 					<div class="panel panel-default" id="panel_content">
-						<div class="panel-heading">Billing</div>
+						<div class="panel-heading" id="remove_pointer">Billing</div>
 						<div class="panel-body">
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Company Name : </label>
@@ -215,47 +244,47 @@
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Email Address : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.EmailAddress.Email" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.EmailAddress.Email">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('billing','EmailAddress.Email',bcontactCopy.EmailAddress.Email)" ng-change="updateNewValue(bcontactCopy.EmailAddress.Email)" ng-show="iseditable" ng-model="bcontactCopy.EmailAddress.Email">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 1 : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Address.Line1" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Address.Line1">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('billing','Address.Line1',bcontactCopy.Address.Line1)" ng-change="updateNewValue(bcontactCopy.Address.Line1)" ng-show="iseditable" ng-model="bcontactCopy.Address.Line1">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 2 : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Address.Line2" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Address.Line2">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('billing','Address.Line2',bcontactCopy.Address.Line2)" ng-change="updateNewValue(bcontactCopy.Address.Line2)" ng-show="iseditable" ng-model="bcontactCopy.Address.Line2">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 3 : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Address.Line3" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Address.Line3">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('billing','Address.Line3',bcontactCopy.Address.Line3)" ng-change="updateNewValue(bcontactCopy.Address.Line3)" ng-show="iseditable" ng-model="bcontactCopy.Address.Line3">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 4 : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Address.Line4" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Address.Line4">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('billing','Address.Line4',bcontactCopy.Address.Line4)" ng-change="updateNewValue(bcontactCopy.Address.Line4)" ng-show="iseditable" ng-model="bcontactCopy.Address.Line4">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">City : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Address.City" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Address.City">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('billing','Address.City',bcontactCopy.Address.City)" ng-change="updateNewValue(bcontactCopy.Address.City)" ng-show="iseditable" ng-model="bcontactCopy.Address.City">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Region : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Address.Region" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Address.Region">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('billing','Address.Region',bcontactCopy.Address.Region)" ng-change="updateNewValue(bcontactCopy.Address.Region)" ng-show="iseditable" ng-model="bcontactCopy.Address.Region">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Postal Code : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Address.PostalCode" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Address.PostalCode">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('billing','Address.PostalCode',bcontactCopy.Address.PostalCode)" ng-change="updateNewValue(bcontactCopy.Address.PostalCode)" ng-show="iseditable" ng-model="bcontactCopy.Address.PostalCode">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Country : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="bcontact.Country" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="bcontact.Country">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('billing','Country',bcontactCopy.Country)" ng-change="updateNewValue(bcontactCopy.Country)" ng-show="iseditable" ng-model="bcontactCopy.Country">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Number : </label>
@@ -267,7 +296,7 @@
 					{{init_scontact(form.ShippingInformation.ShippingContact)}}
 					<div class="col-sm-6 col-md-6 col-lg-6">
 					<div class="panel panel-default" id="panel_content">
-						<div class="panel-heading">Shipping</div>
+						<div class="panel-heading" id="remove_pointer">Shipping</div>
 						<div class="panel-body">
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Company Name : </label>
@@ -280,47 +309,47 @@
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Email Address : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.EmailAddress.Email" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.EmailAddress.Email">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('shipping','EmailAddress.Email',scontactCopy.EmailAddress.Email)" ng-change="updateNewValue(scontactCopy.EmailAddress.Email)" ng-show="iseditable" ng-model="scontactCopy.EmailAddress.Email">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 1 : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Address.Line1" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Address.Line1">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('shipping','Address.Line1',scontactCopy.Address.Line1)" ng-change="updateNewValue(scontactCopy.Address.Line1)" ng-show="iseditable" ng-model="scontactCopy.Address.Line1">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 2 : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Address.Line2" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Address.Line2">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('shipping','Address.Line2',scontactCopy.Address.Line2)" ng-change="updateNewValue(scontactCopy.Address.Line2)" ng-show="iseditable" ng-model="scontactCopy.Address.Line2">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 3 : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Address.Line3" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Address.Line3">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('shipping','Address.Line3',scontactCopy.Address.Line3)" ng-change="updateNewValue(scontactCopy.Address.Line3)" ng-show="iseditable" ng-model="scontactCopy.Address.Line3">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Street Address 4 : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Address.Line4" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Address.Line4">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('shipping','Address.Line4',scontactCopy.Address.Line4)" ng-change="updateNewValue(scontactCopy.Address.Line4)" ng-show="iseditable" ng-model="scontactCopy.Address.Line4">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">City : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Address.City" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Address.City">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('shipping','Address.City',scontactCopy.Address.City)" ng-change="updateNewValue(scontactCopy.Address.City)" ng-show="iseditable" ng-model="scontactCopy.Address.City">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Region : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Address.Region" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Address.Region">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('shipping','Address.Region',scontactCopy.Address.Region)" ng-change="updateNewValue(scontactCopy.Address.Region)" ng-show="iseditable" ng-model="scontactCopy.Address.Region">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Postal Code : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Address.PostalCode" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Address.PostalCode">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('shipping','Address.PostalCode',scontactCopy.Address.PostalCode)" ng-change="updateNewValue(scontactCopy.Address.PostalCode)" ng-show="iseditable" ng-model="scontactCopy.Address.PostalCode">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Country : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="scontact.Country" ng-hide="iseditable"></span>
-								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-show="iseditable" ng-model="scontact.Country">
+								<input class="col-sm-6 col-md-6 col-lg-6" type="text" class="form-control" ng-focus="updateContactCommandList('shipping','Country',scontactCopy.Country)" ng-change="updateNewValue(scontactCopy.Country)" ng-show="iseditable" ng-model="scontactCopy.Country">
 							</div>
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Number : </label>
@@ -329,12 +358,22 @@
 						</div>
 					</div>
 					</div>
-					&nbsp<br/>
-					<div id="s_button"><button type="button" class="btn btn-primary" ng-click="changeEditState()"><span ng-hide="iseditable">Edit</span><span ng-show="iseditable">Save</span></button></div>
+					&nbsp <br/>
+					<div id="s_button" ng-hide="dispositionCode">
+						<button type="button" class="btn btn-primary" ng-click="changeEditState()" ng-hide="commandList.OrderGroupChangeset.length || iseditable">
+							<span>Edit</span>
+						</button>
+						<button type="button" class="btn btn-primary" ng-click="changeEditState()" ng-show="iseditable">
+							<span>Save</span>
+						</button>
+						<button type="button" class="btn btn-primary" ng-click="cancel()" ng-show="iseditable">
+							Cancel
+						</button>
+					</div>
 					
 				</accordion-group>
-				<accordion-group is-open="open_item" ng-repeat="item in form.Items.$values" ng-init="item_no=$index">
-				<!--ng-repeat="itemUnit in unit.FulfillmentItemInformation.$values" ng-init="item=getItem(itemUnit.ItemId)"-->
+				<accordion-group is-open="open_item" ng-repeat="itemUnit in unit.FulfillmentItemInformation" ng-init="itemNumber=$index">
+				{{getItem(itemUnit.ItemId)}}
 					<accordion-heading>
 						<div id="ac_heading">
 							Item Detail #{{$index+1}}
@@ -442,7 +481,7 @@
 						</div>
 					</div>
 					
-					<div class="container" id="table" ng-hide="isnull(item.PriceAdjustments.$values)">
+					<div class="container" id="table" ng-hide="isnull(item.PriceAdjustments)">
 						<div class="row" id="table_header">
 							<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">Promotion Type</div>
 							<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">Coupon ID</div>
@@ -453,7 +492,7 @@
 							<div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">Total Impact</div>
 						</div>
 						<div id="table_content">
-							<div class="row" ng-repeat="promotion in item.PriceAdjustments.$values">
+							<div class="row" ng-repeat="promotion in item.PriceAdjustments">
 								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="promotion.CouponFlag"></div>
 								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
 								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="promotion.Id"></div>
@@ -472,53 +511,54 @@
 							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Price</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">SKUs</div>
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Description</div>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Edit/Remove</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-hide="dispositionCode">Edit/Remove</div>
 						</div>
 						<div id="table_content">
-							<div class="row" ng-repeat="module in item.ConfigDetails.Modules.$values" ng-init = "row_editable = false">
-								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Sequence" ng-hide="row_editable"></div>
-								<input class="col-sm-1 col-md-1 col-lg-1 col-xs-1" type="text" class="form-control" ng-show="row_editable" ng-model="module.Sequence">
-								
-								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.DefaultOption" ng-hide="row_editable"></div>
-								<input class="col-sm-1 col-md-1 col-lg-1 col-xs-1" type="text" class="form-control" ng-show="row_editable" ng-model="module.DefaultOption">
-								
-								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Options.$values[0].OriginalPrice" ></div>
-								<!--input class="col-sm-1 col-md-1 col-lg-1 col-xs-1" type="text" class="form-control" ng-show="row_editable" ng-model="module.Options.$values[0].OriginalPrice"-->
-								
+							<div class="row" ng-repeat="module in item.ConfigDetails.Modules" ng-init = "row_editable = false; moduleNumber=$index">
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Sequence"></div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.DefaultOption"></div>
+								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-bind="module.Options[0].OriginalPrice" ng-hide="row_editable"></div>
+								<input class="col-sm-1 col-md-1 col-lg-1 col-xs-1" type="text" class="form-control" ng-show="row_editable" ng-model="module.Options[0].OriginalPrice">
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-									<span ng-repeat="option in module.Options.$values">
-										<span ng-repeat="sku in option.Skus.$values">
+									<span ng-repeat="option in module.Options">
+										<span ng-repeat="sku in option.Skus">
 											<span ng-bind="sku.Id"></span><span>&nbsp </span>
 										</span>
 									</span>
 								</div>
-								
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-									<span ng-repeat="option in module.Options.$values">
+									<span ng-repeat="option in module.Options">
 										<span ng-bind="option.Description"></span><span>&nbsp </span>
 									</span>
 								</div>
-								<!--input class="col-sm-4 col-md-4 col-lg-4 col-xs-4" type="text" class="form-control" ng-show="row_editable" ng-model="module.Options.$values[0].Description"-->
-								
-								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-									<button type="button" class="btn btn-primary" ng-click="row_editable = row_editable==true? false : true;">
-									<span ng-hide="row_editable"><span class="glyphicon glyphicon-pencil"></span></span>
-									<span ng-show="row_editable"><span class="glyphicon glyphicon-save"></span></span>
-									</button>
-									<button type="button" class="btn btn-primary" ng-click="deleteModule(item,module.Sequence)">
-									<span><span class="glyphicon glyphicon-remove"></span></span>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-hide="dispositionCode">
+									<button type="button" ng-hide="row_editable || rowEditMode" class="btn btn-primary" ng-click="row_editable = changeRowEdit(row_editable,module.Options[0].OriginalPrice,itemNumber,module)">
+										<span class="glyphicon glyphicon-pencil"></span>
 									</button>
 									
+									<button type="button" ng-show="row_editable" class="btn btn-primary" ng-click="row_editable = cancelRowEdit(row_editable)">
+										<span class="glyphicon glyphicon-arrow-left"></span>
+									</button>
+									<button type="button" ng-show="row_editable" class="btn btn-primary" ng-click="row_editable = changeRowEdit(row_editable,module.Options[0].OriginalPrice,itemNumber,module)">
+										<span class="glyphicon glyphicon-save"></span>
+									</button>
+									<button type="button" ng-hide="rowEditMode" class="btn btn-primary" ng-click="deleteModule(item,module.Sequence,itemNumber,moduleNumber)">
+									<span><span class="glyphicon glyphicon-remove"></span></span>
+									</button>
 								</div>
 							</div>
 						</div>
 					</div>
-				
-				<div ng-repeat="x in updateList">
-				{{x.id}} {{x.old_val}} {{x.new_val}} {{x.action}} </br>
-				</div>
+					<div id="publish_buttons">
+						<button type="button" class="btn btn-primary" ng-show="commandList.OrderGroupChangeset.length && !rowEditMode" ng-click="saveChanges()">
+							Publish[{{commandList.OrderGroupChangeset.length}}]
+						</button>
+						<button type="button" class="btn btn-primary" ng-show="commandList.OrderGroupChangeset.length && !rowEditMode" ng-click="createItemCopy()">
+							Cancel
+						</button>
+					</div>
 				</accordion-group>
-				<accordion-group is-open="open_payment">
+				<accordion-group is-open="open_payment" ng-init="open_payment=true">
 					<accordion-heading>
 						<div id="ac_heading">
 							Payment Information
@@ -526,7 +566,7 @@
 						</div>
 					</accordion-heading>
 					<div id="panel_content">
-						<div ng-repeat="payment in formData.PaymentMethods.$values">
+						<div ng-repeat="payment in formData.PaymentMethods">
 							<div class="row">
 								<label class="col-sm-6 col-md-6 col-lg-6 control-label">Payment Type : </label>
 								<span class="col-sm-6 col-md-6 col-lg-6" ng-bind="isnull(payment.PaymentDescription)?'Not Provided':(payment.PaymentDescription)"></span>
@@ -584,7 +624,7 @@
 						</div>
 					</div>
 				</accordion-group>
-				<accordion-group is-open="open_shipment">
+				<accordion-group is-open="open_shipment" ng-init="open_shipment=true">
 					{{init_shipInfo(form.ShippingInformation)}}
 					<accordion-heading>
 						<div id="ac_heading">

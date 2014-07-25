@@ -124,10 +124,17 @@ font-size: 18px;
  padding : 10px 0px;
  text-align : center;
 }
+
+#table_header>div
+{
+word-wrap: break-word;
+}
+
 #table_content>div
 {
  text-align : center;
  padding-bottom : 5px;
+ min-height: 35px;
 }
 
 #table_content>.row:nth-child(2n+1)
@@ -139,3 +146,27 @@ font-size: 18px;
  background-color :#EEFFFF;
 }
 
+#publish_buttons{
+	margin: 20px auto;
+	text-align: center;
+}
+#dpid_input{
+  display: inline;
+}
+
+#dpid_input>input{
+  float: left;
+  width: 300px;
+  margin-left: 65px;
+  margin-right: 25px;
+}
+
+#remove_pointer:hover{
+  cursor: default;
+}
+
+#og_status
+{
+text-align: right;
+margin-right: 15px;
+}
